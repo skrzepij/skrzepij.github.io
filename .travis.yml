@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "Dubnium"
+  - "lts/*"
   - "10.15.0"
 dist: xenial
 sudo: required
