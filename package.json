@@ -1,6 +1,6 @@
 {
   "name": "skrzepij-github-pages",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -9,6 +9,10 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "publish": "ng build --prod --base-href \"skrzepij.github.io\" && ngh --branch \"master\" --no-silent --repo=\"git@github.com:skrzepij/skrzepij.github.io.git\""
+  },
+  "engines": {
+    "node": ">=10.13.0",
+    "npm": ">=6.4.1"
   },
   "private": true,
   "dependencies": {

@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - "Dubnium"
+  - "10.15.0"
+dist: xenial
+sudo: required
+
+branches:
+  only:
+    - develop
+
+before_script:
+  - npm i -g @angular/cli
+
+script:
+  - ng lint
+  - ng build --prod --base-href https://skrzepij.github.io/
