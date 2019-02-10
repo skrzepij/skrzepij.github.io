@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
+    "test-headless": "ng test --watch=false --browser=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "publish": "ng build --prod --base-href \"skrzepij.github.io\" && ngh --branch \"master\" --no-silent --repo=\"git@github.com:skrzepij/skrzepij.github.io.git\""
