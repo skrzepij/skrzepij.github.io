@@ -1,0 +1,27 @@
+language: node_js
+node_js:
+  - 10.15.0
+  - node
+dist: xenial
+sudo: required
+
+branches:
+  only:
+    - develop
+
+before_script:
+  - npm i -g @angular/cli
+
+script:
+  - ng lint
+  - npm run test-headless
+  - ng e2e
+  - ng build --prod --base-href https://skrzepij.github.io/
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN
+  keep-history: true
+  on:
+    branch: master
