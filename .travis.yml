@@ -17,3 +17,11 @@ script:
   - npm run test-headless
   - ng e2e
   - ng build --prod --base-href https://skrzepij.github.io/
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GH_TOKEN
+  keep-history: true
+  on:
+    branch: master
