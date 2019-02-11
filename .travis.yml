@@ -22,6 +22,7 @@ deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GH_TOKEN
+  target-branch: master
   on:
     branch: develop
     node: 10.15.0
