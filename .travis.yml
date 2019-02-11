@@ -24,4 +24,5 @@ deploy:
   github_token: $GH_TOKEN
   keep-history: true
   on:
-    branch: master
+    branch: develop
+    node: 10.15.0
