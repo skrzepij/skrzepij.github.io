@@ -25,3 +25,4 @@ deploy:
   keep-history: true
   on:
     branch: develop
+    node: 10.15.0
