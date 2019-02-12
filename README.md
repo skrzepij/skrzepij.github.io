@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/skrzepij/skrzepij.github.io.svg?branch=develop)](https://travis-ci.org/skrzepij/skrzepij.github.io)
+
 # SkrzepijGithubPages
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
