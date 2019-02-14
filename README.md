@@ -1,27 +1,27 @@
 [![Build Status](https://travis-ci.org/skrzepij/skrzepij.github.io.svg?branch=develop)](https://travis-ci.org/skrzepij/skrzepij.github.io)
 
-# SkrzepijGithubPages
+## Skrzepij Portfolio Webpage
 
-## Development server
+This is the repo for my personal portfolio: https://skrzepij.github.io
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Development 
 
-## Code scaffolding
+Website is created with Angular CLI in version >= 7
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+All source files should be placed on `develop` branch.
 
-## Build
+Every new feature should be created on new `feature` branch, 
+which should be merged (via PR) to `develop` branch after finishing the work.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## Build & deploy
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Linting, testing, building and deploying process is automated by [Travis CI](https://travis-ci.org/). 
 
-## Running end-to-end tests
+It will be activated every time, when changes affect `develop` branch.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Because of [GitHub Pages](https://pages.github.com/) hosting policy, production bundle is located on `master` branch  
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Contribution
+You can contribute to the website by submitting pull requests or creating issues.
