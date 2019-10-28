@@ -14,7 +14,7 @@ before_script:
   - npm i
 
 script:
-  # TODO: Implement tests and run suitable npm script here.
+  # TODO: Implement tests and run suitable npm script here. 
   # eg. - npm run test
   - npm run build
 
