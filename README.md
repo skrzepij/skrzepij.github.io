@@ -1,12 +1,12 @@
+# Skrzepij Portfolio Page>
+
 [![Build Status](https://travis-ci.org/skrzepij/skrzepij.github.io.svg?branch=develop)](https://travis-ci.org/skrzepij/skrzepij.github.io)
 
-## Skrzepij Portfolio Webpage
-
-This is the repo for my personal portfolio: https://skrzepij.github.io
+This is the repo for my personal portfolio: https://skrzepij.github.io and http://skrzepij.pl
 
 ## Development 
 
-Website is created with Angular CLI in version >= 7
+Website is created with latest Gatsby build (2.17)
 
 All source files should be placed on `develop` branch.
 

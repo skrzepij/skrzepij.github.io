@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - 10.15.0
+  - 12.13.0
   - node
 dist: xenial
 sudo: required
@@ -9,23 +9,21 @@ branches:
   only:
     - develop
 
-cache: npm
-
 before_script:
-  - npm i -g @angular/cli
+  - npm i -g gatsby
+  - npm i
 
 script:
-  - ng lint
-  - npm run test-headless
-  - ng e2e
-  - ng build --prod --base-href https://skrzepij.github.io/
+  # TODO: Implement tests and run suitable npm script here. 
+  # eg. - npm run test
+  - npm run build
 
 deploy:
   provider: pages
   skip_cleanup: true
   github_token: $GH_TOKEN
-  local_dir: dist
+  local_dir: public
+  keep-history: true
   target-branch: master
   on:
     branch: develop
-    node: 10.15.0
