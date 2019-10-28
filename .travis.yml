@@ -18,9 +18,6 @@ script:
   # eg. - npm run test
   - npm run build
 
-#after_success:
-#  - npm run deploy
-
 deploy:
   provider: pages
   skip_cleanup: true
