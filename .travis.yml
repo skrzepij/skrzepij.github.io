@@ -1,8 +1,8 @@
 language: node_js
 node_js:
-  - 12.13.0
+  - 14.15.4
   - node
-dist: xenial
+dist: bionic
 sudo: required
 
 branches:
@@ -17,6 +17,8 @@ script:
   # TODO: Implement tests and run suitable npm script here. 
   # eg. - npm run test
   - npm run build
+
+before_deploy: "echo 'Ready to deploy..'"
 
 deploy:
   provider: pages
