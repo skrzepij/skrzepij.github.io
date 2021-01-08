@@ -1,4 +1,4 @@
-# Skrzepij Portfolio Page>
+# Skrzepij Portfolio Page
 
 [![Build Status](https://travis-ci.org/skrzepij/skrzepij.github.io.svg?branch=develop)](https://travis-ci.org/skrzepij/skrzepij.github.io)
 
