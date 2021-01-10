@@ -5,5 +5,13 @@
  */
 
 module.exports = {
-  /* Your site config here */
+  siteMetadata: {
+    title: `Radomir Skrzepij`,
+    author: `UpCore`,
+    description: `Strona osobista`,
+  },
+  plugins: [
+    `gatsby-plugin-typescript`,
+  ]
+
 }
