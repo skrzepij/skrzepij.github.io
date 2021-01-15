@@ -8,6 +8,7 @@ module.exports = {
   siteMetadata: {
     title: `Radomir Skrzepij`,
     author: `UpCore`,
+    authorUrl: `http://upco.re`,
     description: `Strona osobista`,
   },
   plugins: [
