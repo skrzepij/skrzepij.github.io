@@ -1,2 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[2],{QeBL:function(e,t,n){"use strict";n.r(t);var a=n("q1tI"),c=n.n(a);t.default=function(){return c.a.createElement("div",{className:"bg-black text-white"},"Hello world!")}}}]);
-//# sourceMappingURL=component---src-pages-index-tsx-d518b01331faaf0a43f4.js.map
