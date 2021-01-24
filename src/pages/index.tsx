@@ -1,15 +1,14 @@
-import React from "react"
-import { graphql } from "gatsby"
+import React from 'react'
+import { graphql } from 'gatsby'
 
-import Layout from "../components/layout"
-import { GatsbyDataInterface } from "../api/gatsbyData"
-
+import { Layout } from '../components/layout'
+import { GatsbyDataInterface } from '../api/gatsbyData'
 
 type Props = {
   readonly data: GatsbyDataInterface
 }
 
-const Index: React.FC<Props> = ({ data }) => {
+export const Index: React.FC<Props> = ({ data }) => {
   const { title, description } = data.site.siteMetadata
   return (
     <Layout>
