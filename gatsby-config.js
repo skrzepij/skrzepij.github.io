@@ -13,7 +13,15 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-typescript`,
-    `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-sass`,
+      options: {
+        // Configure SASS to process Tailwind
+        postCssPlugins: [
+          require('tailwindcss'),
+        ],
+      }
+    },
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {

@@ -20,7 +20,7 @@ export const Layout: React.FC<Props> = ({ children }) => {
   const { author, authorUrl } = data.site.siteMetadata
 
   return (
-    <div className={'h-screen bg-black text-white'}>
+    <div className={'h-screen bg-black text-white dark:bg-gray-800'}>
       <main>{children}</main>
       <footer>
         Created by
