@@ -292,7 +292,7 @@ type Query {
   allSitePlugin(filter: SitePluginFilterInput, limit: Int, skip: Int, sort: SitePluginSortInput): SitePluginConnection!
   directory(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): Directory
   file(absolutePath: StringQueryOperatorInput, accessTime: DateQueryOperatorInput, atime: DateQueryOperatorInput, atimeMs: FloatQueryOperatorInput, base: StringQueryOperatorInput, birthTime: DateQueryOperatorInput, birthtime: DateQueryOperatorInput, birthtimeMs: FloatQueryOperatorInput, changeTime: DateQueryOperatorInput, children: NodeFilterListInput, ctime: DateQueryOperatorInput, ctimeMs: FloatQueryOperatorInput, dev: IntQueryOperatorInput, dir: StringQueryOperatorInput, ext: StringQueryOperatorInput, extension: StringQueryOperatorInput, gid: IntQueryOperatorInput, id: StringQueryOperatorInput, ino: FloatQueryOperatorInput, internal: InternalFilterInput, mode: IntQueryOperatorInput, modifiedTime: DateQueryOperatorInput, mtime: DateQueryOperatorInput, mtimeMs: FloatQueryOperatorInput, name: StringQueryOperatorInput, nlink: IntQueryOperatorInput, parent: NodeFilterInput, prettySize: StringQueryOperatorInput, rdev: IntQueryOperatorInput, relativeDirectory: StringQueryOperatorInput, relativePath: StringQueryOperatorInput, root: StringQueryOperatorInput, size: IntQueryOperatorInput, sourceInstanceName: StringQueryOperatorInput, uid: IntQueryOperatorInput): File
-  site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
+  site(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, host: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput, pathPrefix: StringQueryOperatorInput, polyfill: BooleanQueryOperatorInput, port: IntQueryOperatorInput, siteMetadata: SiteSiteMetadataFilterInput): Site
   siteBuildMetadata(buildTime: DateQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, parent: NodeFilterInput): SiteBuildMetadata
   sitePage(children: NodeFilterListInput, component: StringQueryOperatorInput, componentChunkName: StringQueryOperatorInput, componentPath: StringQueryOperatorInput, id: StringQueryOperatorInput, internal: InternalFilterInput, internalComponentName: StringQueryOperatorInput, isCreatedByStatefulCreatePages: BooleanQueryOperatorInput, matchPath: StringQueryOperatorInput, parent: NodeFilterInput, path: StringQueryOperatorInput, pluginCreator: SitePluginFilterInput, pluginCreatorId: StringQueryOperatorInput): SitePage
   sitePlugin(browserAPIs: StringQueryOperatorInput, children: NodeFilterListInput, id: StringQueryOperatorInput, internal: InternalFilterInput, name: StringQueryOperatorInput, nodeAPIs: StringQueryOperatorInput, packageJson: SitePluginPackageJsonFilterInput, parent: NodeFilterInput, pluginFilepath: StringQueryOperatorInput, pluginOptions: SitePluginPluginOptionsFilterInput, resolve: StringQueryOperatorInput, ssrAPIs: StringQueryOperatorInput, version: StringQueryOperatorInput): SitePlugin
@@ -314,6 +314,8 @@ type Site implements Node {
   id: ID!
   internal: Internal!
   parent: Node
+  pathPrefix: String
+  polyfill: Boolean
   port: Int
   siteMetadata: SiteSiteMetadata
 }
@@ -496,11 +498,18 @@ type SitePluginPluginOptions {
   head: Boolean
   isTSX: Boolean
   jsxPragma: String
+  options: SitePluginPluginOptionsOptions
   pageTransitionDelay: Int
   path: String
   pathCheck: Boolean
   respectDNT: Boolean
+  stages: [String]
   trackingId: String
+}
+
+type SitePluginPluginOptionsOptions {
+  emitWarning: Boolean
+  failOnError: Boolean
 }
 
 type SiteSiteMetadata {
@@ -929,6 +938,8 @@ enum SiteFieldsEnum {
   parent___parent___internal___type
   parent___parent___parent___children
   parent___parent___parent___id
+  pathPrefix
+  polyfill
   port
   siteMetadata___author
   siteMetadata___authorUrl
@@ -1093,10 +1104,13 @@ enum SitePageFieldsEnum {
   pluginCreator___pluginOptions___head
   pluginCreator___pluginOptions___isTSX
   pluginCreator___pluginOptions___jsxPragma
+  pluginCreator___pluginOptions___options___emitWarning
+  pluginCreator___pluginOptions___options___failOnError
   pluginCreator___pluginOptions___pageTransitionDelay
   pluginCreator___pluginOptions___path
   pluginCreator___pluginOptions___pathCheck
   pluginCreator___pluginOptions___respectDNT
+  pluginCreator___pluginOptions___stages
   pluginCreator___pluginOptions___trackingId
   pluginCreator___resolve
   pluginCreator___ssrAPIs
@@ -1214,10 +1228,13 @@ enum SitePluginFieldsEnum {
   pluginOptions___head
   pluginOptions___isTSX
   pluginOptions___jsxPragma
+  pluginOptions___options___emitWarning
+  pluginOptions___options___failOnError
   pluginOptions___pageTransitionDelay
   pluginOptions___path
   pluginOptions___pathCheck
   pluginOptions___respectDNT
+  pluginOptions___stages
   pluginOptions___trackingId
   resolve
   ssrAPIs
@@ -1397,6 +1414,8 @@ input SiteFilterInput {
   id: StringQueryOperatorInput
   internal: InternalFilterInput
   parent: NodeFilterInput
+  pathPrefix: StringQueryOperatorInput
+  polyfill: BooleanQueryOperatorInput
   port: IntQueryOperatorInput
   siteMetadata: SiteSiteMetadataFilterInput
 }
@@ -1483,11 +1502,18 @@ input SitePluginPluginOptionsFilterInput {
   head: BooleanQueryOperatorInput
   isTSX: BooleanQueryOperatorInput
   jsxPragma: StringQueryOperatorInput
+  options: SitePluginPluginOptionsOptionsFilterInput
   pageTransitionDelay: IntQueryOperatorInput
   path: StringQueryOperatorInput
   pathCheck: BooleanQueryOperatorInput
   respectDNT: BooleanQueryOperatorInput
+  stages: StringQueryOperatorInput
   trackingId: StringQueryOperatorInput
+}
+
+input SitePluginPluginOptionsOptionsFilterInput {
+  emitWarning: BooleanQueryOperatorInput
+  failOnError: BooleanQueryOperatorInput
 }
 
 input SitePluginSortInput {
