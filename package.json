@@ -1,0 +1,53 @@
+{
+  "name": "skrzepij.pl",
+  "private": true,
+  "description": "Radomir Skrzepij Portfolio page",
+  "version": "0.1.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,ts,tsx,sass,scss,json,md}\"",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
+    "type-check": "tsc --noEmit",
+    "lint:fix": "eslint --fix --ext .ts,.tsx ."
+  },
+  "dependencies": {
+    "@tailwindcss/postcss7-compat": "^2.0.2",
+    "autoprefixer": "^9.8.6",
+    "gatsby": "^2.31.1",
+    "gatsby-plugin-google-analytics": "^2.10.0",
+    "gatsby-plugin-postcss": "^3.6.0",
+    "gatsby-plugin-sass": "^3.1.0",
+    "gatsby-plugin-typescript": "^2.11.0",
+    "node-sass": "^5.0.0",
+    "postcss": "^7.0.35",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "^17.0.0",
+    "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.14.1",
+    "@typescript-eslint/parser": "^4.14.1",
+    "eslint": "^7.18.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-config-react-app": "^6.0.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "eslint-plugin-react": "^7.22.0",
+    "gatsby-plugin-eslint": "^2.0.8",
+    "prettier": "^2.2.1",
+    "typescript": "^4.1.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/skrzepij/skrzepij.github.io"
+  },
+  "bugs": {
+    "url": "https://github.com/skrzepij/skrzepij.github.io/issues"
+  }
+}
