@@ -1,11 +1,9 @@
 import React from 'react'
 import { graphql, useStaticQuery } from 'gatsby'
 
-type Props = {
-  readonly children: React.ReactNode
-}
+import styles from './footer.module.scss'
 
-export const Layout: React.FC<Props> = ({ children }) => {
+export const Footer: React.FC = () => {
   const data = useStaticQuery(graphql`
     query FooterQuery {
       site {
@@ -16,18 +14,16 @@ export const Layout: React.FC<Props> = ({ children }) => {
       }
     }
   `)
-
   const { author, authorUrl } = data.site.siteMetadata
 
   return (
-    <div className={'h-screen bg-black text-white dark:bg-gray-800'}>
-      <main>{children}</main>
-      <footer>
-        Created by
+    <footer className={`${styles.footer}`}>
+      <p>
+        Created by{' '}
         <a href={authorUrl} target="_blank" rel="noopener noreferrer">
           {author}
         </a>
-      </footer>
-    </div>
+      </p>
+    </footer>
   )
 }
