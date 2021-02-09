@@ -17,10 +17,8 @@ module.exports = {
       resolve: `gatsby-plugin-sass`,
       options: {
         // Configure SASS to process Tailwind
-        postCssPlugins: [
-          require('tailwindcss'),
-        ],
-      }
+        postCssPlugins: [require('tailwindcss')],
+      },
     },
     {
       resolve: `gatsby-plugin-google-analytics`,

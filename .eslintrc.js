@@ -69,5 +69,12 @@ module.exports = {
       files: ['src/pages/*.tsx'],
       rules: { 'import/no-default-export': 'off' },
     },
+    {
+      // Allow to use CommonJS imports in .js files
+      files: ['*.js'],
+      rules: {
+        '@typescript-eslint/no-var-requires': 'off',
+      },
+    },
   ],
 }
