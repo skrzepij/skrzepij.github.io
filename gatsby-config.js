@@ -39,5 +39,17 @@ module.exports = {
         },
       },
     },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Radomir Skrzepij Webpage',
+        short_name: 'Radomir Skrzepij',
+        start_url: '/',
+        background_color: '#141000',
+        theme_color: 'yellow',
+        display: 'standalone',
+        icon: 'src/images/pwa-icon.svg',
+      },
+    },
   ],
 }
