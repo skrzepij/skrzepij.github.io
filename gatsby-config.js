@@ -48,7 +48,7 @@ module.exports = {
         background_color: '#141000',
         theme_color: 'yellow',
         display: 'standalone',
-        icon: 'src/images/pwa-icon.svg',
+        icon: 'src/images/icon.svg',
       },
     },
     {
