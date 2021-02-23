@@ -51,5 +51,11 @@ module.exports = {
         icon: 'src/images/pwa-icon.svg',
       },
     },
+    {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        precachePages: ['/about/', '/projects/', '/contact/'],
+      },
+    },
   ],
 }
