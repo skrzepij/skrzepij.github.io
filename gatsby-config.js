@@ -57,5 +57,12 @@ module.exports = {
         precachePages: ['/about/', '/projects/', '/contact/'],
       },
     },
+    {
+      resolve: '@sentry/gatsby',
+      options: {
+        dsn: 'https://3234ae163b0b4ea9bafa214d20903fe0@o560318.ingest.sentry.io/5695776',
+        sampleRate: 0.7,
+      },
+    },
   ],
 }
