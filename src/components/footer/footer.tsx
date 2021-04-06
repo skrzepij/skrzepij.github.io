@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from 'gatsby'
 
 import styles from './footer.module.scss'
 
-export const Footer: React.FC = () => {
+export const Footer = (): JSX.Element => {
   const data = useStaticQuery(graphql`
     query FooterQuery {
       site {
