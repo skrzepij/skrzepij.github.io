@@ -8,7 +8,7 @@ type Props = {
   readonly children: React.ReactNode
 }
 
-export const Layout: React.FC<Props> = ({ children }) => {
+export const Layout = ({ children }: Props): JSX.Element => {
   return (
     <div className={styles.layout}>
       <main>{children}</main>

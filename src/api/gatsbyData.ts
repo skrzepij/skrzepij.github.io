@@ -1,10 +1,12 @@
 export interface GatsbyDataInterface {
   site: {
-    siteMetadata: {
-      title: string
-      author: string
-      authorUrl: string
-      description: string
-    }
+    siteMetadata: GatsbySiteMetaDataInterface
   }
+}
+
+export interface GatsbySiteMetaDataInterface {
+  title: string
+  author: string
+  authorUrl: string
+  description: string
 }

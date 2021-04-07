@@ -8,7 +8,7 @@ type Props = {
   readonly data: GatsbyDataInterface
 }
 
-export const Index: React.FC<Props> = ({ data }) => {
+export const Index = ({ data }: Props): JSX.Element => {
   const { title, description } = data.site.siteMetadata
   return (
     <Layout>
