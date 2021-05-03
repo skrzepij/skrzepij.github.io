@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Footer } from '../footer/footer'
 
-import styles from './layout.module.scss'
+import { layout } from './layout.module.scss'
 
 type Props = {
   readonly children: React.ReactNode
@@ -10,7 +10,7 @@ type Props = {
 
 export const Layout = ({ children }: Props): JSX.Element => {
   return (
-    <div className={styles.layout}>
+    <div className={layout}>
       <main>{children}</main>
       <Footer />
     </div>
