@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.2",
-    "autoprefixer": "^9.8.6",
+    "autoprefixer": "^10.2.5",
     "gatsby": "^3.4.0",
     "gatsby-plugin-google-analytics": "^3.4.0",
     "gatsby-plugin-manifest": "^3.4.0",
@@ -28,7 +28,7 @@
     "postcss": "^8.2.13",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+    "tailwindcss": "^2.1.2"
   },
   "devDependencies": {
     "@sentry/gatsby": "^6.2.3",
