@@ -1,7 +1,7 @@
 {
   "name": "skrzepij.pl",
   "private": true,
-  "description": "Radomir Skrzepij Portfolio page",
+  "description": "Radomir Skrzepij portfolio page",
   "version": "0.1.0",
   "license": "MIT",
   "scripts": {
@@ -16,22 +16,22 @@
   },
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.2",
-    "autoprefixer": "^9.8.6",
-    "gatsby": "^2.31.1",
-    "gatsby-plugin-google-analytics": "^2.10.0",
-    "gatsby-plugin-manifest": "^2.12.0",
-    "gatsby-plugin-offline": "^3.10.1",
-    "gatsby-plugin-postcss": "^3.6.0",
-    "gatsby-plugin-sass": "^3.1.0",
-    "gatsby-plugin-typescript": "^2.11.0",
+    "autoprefixer": "^10.2.5",
+    "gatsby": "^3.4.0",
+    "gatsby-plugin-google-analytics": "^3.4.0",
+    "gatsby-plugin-manifest": "^3.4.0",
+    "gatsby-plugin-offline": "^4.4.0",
+    "gatsby-plugin-postcss": "^4.4.0",
+    "gatsby-plugin-sass": "^4.4.0",
+    "gatsby-plugin-typescript": "^3.4.0",
     "node-sass": "^5.0.0",
-    "postcss": "^7.0.35",
+    "postcss": "^8.2.13",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2"
+    "tailwindcss": "^2.1.2"
   },
   "devDependencies": {
-    "@sentry/gatsby": "^6.2.3",
+    "@sentry/gatsby": "^6.3.5",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^4.14.1",
@@ -42,7 +42,7 @@
     "eslint-loader": "^4.0.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-react": "^7.22.0",
-    "gatsby-plugin-eslint": "^2.0.8",
+    "gatsby-plugin-eslint": "^3.0.0",
     "prettier": "^2.2.1",
     "typescript": "^4.1.3"
   },
