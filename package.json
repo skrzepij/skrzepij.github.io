@@ -24,10 +24,10 @@
     "gatsby-plugin-postcss": "^4.4.0",
     "gatsby-plugin-sass": "^4.4.0",
     "gatsby-plugin-typescript": "^3.4.0",
-    "node-sass": "^5.0.0",
     "postcss": "^8.2.13",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "sass": "^1.32.12",
     "tailwindcss": "^2.1.2"
   },
   "devDependencies": {
