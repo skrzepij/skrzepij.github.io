@@ -1,23 +1,14 @@
 import React from 'react'
-import { graphql, useStaticQuery } from 'gatsby'
 
-import styles from './footer.module.scss'
+import { useSiteMetaData } from '../../hooks/useSiteMetaData'
 
-export const Footer: React.FC = () => {
-  const data = useStaticQuery(graphql`
-    query FooterQuery {
-      site {
-        siteMetadata {
-          author
-          authorUrl
-        }
-      }
-    }
-  `)
-  const { author, authorUrl } = data.site.siteMetadata
+import { footer } from './footer.module.scss'
+
+export const Footer = (): JSX.Element => {
+  const { author, authorUrl } = useSiteMetaData()
 
   return (
-    <footer className={`${styles.footer}`}>
+    <footer className={footer}>
       <p>
         Created by{' '}
         <a href={authorUrl} target="_blank" rel="noopener noreferrer">
