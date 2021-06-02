@@ -21,10 +21,15 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: 'UA-42236657-2',
+        trackingIds: ['G-KL8QDZ29XV'],
         head: true,
+      },
+      gtagConfig: {
+        anonymize_ip: false,
+        cookie_expires: 0,
+        send_page_view: true,
       },
     },
     {
@@ -62,15 +67,6 @@ module.exports = {
       options: {
         dsn: 'https://3234ae163b0b4ea9bafa214d20903fe0@o560318.ingest.sentry.io/5695776',
         sampleRate: 0.7,
-      },
-    },
-    {
-      resolve: `gatsby-plugin-google-gtag`,
-      options: {
-        // You can add multiple tracking ids and a pageview event will be fired for all of them.
-        trackingIds: [
-          'G-KL8QDZ29XV', // Google Analytics / GA
-        ],
       },
     },
   ],
