@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: skrzepij.pl
+Token: 3722336e23a063da677983606dee8e6d2a7e9f755a21093522da565cae914407
