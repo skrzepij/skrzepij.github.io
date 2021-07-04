@@ -10,6 +10,12 @@ module.exports = {
     author: `UpCore`,
     authorUrl: `http://upco.re`,
     description: `Strona osobista`,
+    keywords: `Radomir Skrzepij, strona osobista, frontend developer, front-end, javascript, design`,
+    social: {
+      twitter: 'https://twitter.com/Zyziu10',
+      github: 'https://github.com/skrzepij',
+      facebook: 'https://www.facebook.com/skrzepij',
+    },
   },
   plugins: [
     `gatsby-plugin-typescript`,
@@ -32,6 +38,7 @@ module.exports = {
         send_page_view: true,
       },
     },
+    `gatsby-plugin-react-helmet`,
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
