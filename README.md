@@ -2,7 +2,11 @@
 
 [![Build Status](https://travis-ci.org/skrzepij/skrzepij.github.io.svg?branch=develop)](https://travis-ci.org/skrzepij/skrzepij.github.io)
 
-This is the repo for my personal portfolio: https://skrzepij.github.io and http://skrzepij.pl
+This is the repo for my personal website: 
+
+Available online versions:
+- https://skrzepij.github.io - staging (latest develop build)
+- http://skrzepij.pl - production
 
 ## Development
 
