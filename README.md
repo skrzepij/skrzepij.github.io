@@ -10,7 +10,7 @@ Available online versions:
 
 ## Development
 
-Website is created with latest Gatsby build (2.17)
+Website is created with latest Gatsby build (3.4)
 
 All source files should be placed on `develop` branch.
 
