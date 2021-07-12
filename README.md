@@ -23,7 +23,8 @@ Linting, testing, building and deploying process is automated by [Travis CI](htt
 
 It will be activated every time, when changes affect `develop` branch.
 
-Because of [GitHub Pages](https://pages.github.com/) hosting policy, production bundle is located on `master` branch
+After merging feature branch to develop, new staging version will be created. 
+This version is hosted on [GitHub Pages](https://pages.github.com/) and all hosted files can be found on `staging` branch.
 
 ## Contribution
 
