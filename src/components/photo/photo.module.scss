@@ -1,0 +1,9 @@
+.photo {
+  @apply flex bg-black shadow-picture;
+  width: 500px;
+  height: 500px;
+
+  img {
+    @apply self-center m-auto;
+  }
+}
