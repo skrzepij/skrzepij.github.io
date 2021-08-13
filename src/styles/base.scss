@@ -1,0 +1,34 @@
+@use 'utils/fonts';
+
+body {
+  @apply font-Roboto font-normal;
+  font-size: fonts.$fs-base;
+}
+
+h1, h2, h3, h4 {
+  @apply font-Montserrat pb-1;
+}
+
+h1, h2 {
+  @apply font-bold;
+}
+
+h1 {
+  @apply text-4xl;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+h3 {
+  @apply text-xl;
+}
+
+p {
+  @apply pb-2;
+}
+
+strong {
+  @apply font-bold;
+}
