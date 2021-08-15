@@ -1,0 +1,20 @@
+.index {
+  @apply mx-auto bg-black-yellow p-4;
+  max-width: 600px;
+
+  &__header {
+    @apply mb-10;
+  }
+  &__title {
+    @apply text-yellow-500;
+  }
+  &__subtitle {
+    @apply text-gray-500;
+  }
+  &__content {
+    @apply text-md;
+  }
+  &__footer {
+    @apply flex justify-around mt-10;;
+  }
+}
