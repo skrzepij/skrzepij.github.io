@@ -12,6 +12,7 @@ module.exports = {
     colors: {
       ...colors,
       'black-yellow': '#141000',
+      'gray-light': '#484848',
     },
     fontFamily: {
       Roboto: ['Roboto', 'sans-serif'],
