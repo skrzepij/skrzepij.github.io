@@ -1,5 +1,28 @@
 .layout {
-  @apply h-screen;
-  @apply bg-black-yellow;
-  @apply text-white;
+  @apply flex flex-col h-screen relative overflow-hidden;
+  @apply bg-black-yellow text-white;
+
+  &::before {
+    @apply absolute bg-yellow-500;
+    content: '';
+    top: -50vw;
+    bottom: 0;
+    left: -75vw;
+    width: 100vw;
+    height: 200vh;
+    transform: rotate(20deg);
+  }
+
+  &__content {
+    @apply container flex flex-col sm:flex-row flex-1 items-center justify-between mx-auto;
+  }
+
+  &__aside {
+    @apply relative sm:pr-5;
+  }
+
+  &__main {
+    @apply max-w-full flex-1 sm:flex-auto relative sm:static z-10;
+    width: 1000px;
+  }
 }
