@@ -1,8 +1,21 @@
 @use 'utils/fonts';
 
+html {
+  font-size: fonts.$fs-base;
+
+  @screen sm {
+    font-size: fonts.$fs-base-sm;
+  }
+  @screen md {
+    font-size: fonts.$fs-base-md;
+  }
+  @screen lg {
+    font-size: fonts.$fs-base-lg;
+  }
+}
+
 body {
   @apply font-Roboto font-normal;
-  font-size: fonts.$fs-base;
 }
 
 h1, h2, h3, h4 {
