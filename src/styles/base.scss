@@ -1,0 +1,47 @@
+@use 'utils/fonts';
+
+html {
+  font-size: fonts.$fs-base;
+
+  @screen sm {
+    font-size: fonts.$fs-base-sm;
+  }
+  @screen md {
+    font-size: fonts.$fs-base-md;
+  }
+  @screen lg {
+    font-size: fonts.$fs-base-lg;
+  }
+}
+
+body {
+  @apply font-Roboto font-normal;
+}
+
+h1, h2, h3, h4 {
+  @apply font-Montserrat pb-1;
+}
+
+h1, h2 {
+  @apply font-bold;
+}
+
+h1 {
+  @apply text-4xl;
+}
+
+h2 {
+  @apply text-3xl;
+}
+
+h3 {
+  @apply text-xl;
+}
+
+p {
+  @apply pb-2;
+}
+
+strong {
+  @apply font-bold;
+}

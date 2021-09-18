@@ -1,12 +1,16 @@
 # Skrzepij Portfolio Page
 
-[![Build Status](https://travis-ci.org/skrzepij/skrzepij.github.io.svg?branch=develop)](https://travis-ci.org/skrzepij/skrzepij.github.io)
+[![Build Status](https://www.travis-ci.com/skrzepij/skrzepij.github.io.svg?branch=develop)](https://www.travis-ci.com/skrzepij/skrzepij.github.io)
 
-This is the repo for my personal portfolio: https://skrzepij.github.io and http://skrzepij.pl
+This is the repo for my personal website: 
+
+Available online versions:
+- https://skrzepij.github.io - staging (latest develop build)
+- http://skrzepij.pl - production
 
 ## Development
 
-Website is created with latest Gatsby build (2.17)
+Website is created with latest Gatsby build (3.4)
 
 All source files should be placed on `develop` branch.
 
@@ -19,7 +23,8 @@ Linting, testing, building and deploying process is automated by [Travis CI](htt
 
 It will be activated every time, when changes affect `develop` branch.
 
-Because of [GitHub Pages](https://pages.github.com/) hosting policy, production bundle is located on `master` branch
+After merging feature branch to develop, new staging version will be created. 
+This version is hosted on [GitHub Pages](https://pages.github.com/) and all hosted files can be found on `staging` branch.
 
 ## Contribution
 
