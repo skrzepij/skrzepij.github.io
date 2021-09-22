@@ -15,7 +15,7 @@
     "lint:fix": "eslint --fix --ext .ts,.tsx ."
   },
   "dependencies": {
-    "@fontsource/montserrat": "^4.5.0",
+    "@fontsource/montserrat": "^4.5.1",
     "@fontsource/roboto": "^4.5.0",
     "gatsby": "^3.4.0",
     "gatsby-plugin-google-gtag": "^3.6.0",
