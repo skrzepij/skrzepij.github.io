@@ -3,6 +3,8 @@ node_js:
   - 16
   - node
 dist: focal
+cache:
+  npm: false
 
 branches:
   only:
