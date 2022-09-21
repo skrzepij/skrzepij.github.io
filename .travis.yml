@@ -1,9 +1,8 @@
 language: node_js
 node_js:
-  - 14.15.4
+  - 16
   - node
-dist: bionic
-sudo: required
+dist: focal
 
 branches:
   only:
@@ -21,6 +20,7 @@ script:
 
 before_deploy: "echo 'Ready to deploy..'"
 
+# Deploy develop branch to github pages
 deploy:
   provider: pages
   skip_cleanup: true
