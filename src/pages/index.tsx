@@ -12,7 +12,7 @@ type Props = {
 }
 
 export const Index = ({ data }: Props): JSX.Element => {
-  const { title, description } = data.site.siteMetadata
+  const { title, description } = data.site.siteMetadata;
   return (
     <Layout>
       <SEO title="Strona główna" />
@@ -24,32 +24,33 @@ export const Index = ({ data }: Props): JSX.Element => {
 
         <section className={styles.index__content}>
           <p>
-            Interesuje się technologiami webowymi. Głównie skupiam się na wydajnym <strong>CSS</strong>,{' '}
-            <strong>JavaScript</strong> i semantycznym <strong>HTML</strong>.
+            Interesuje się technologiami webowymi. Stawiam na możliwie proste i wydajne rozwiązania w
+            zakresie <strong>JavaScript</strong>,{" "}
+            <strong>CSS</strong> czy <strong>HTML</strong>.
           </p>
           <p>
-            Niedawno zacząłem się rozwijać w <strong>UX</strong> oraz backendzie, z wykorzystaniem{' '}
+            Swój rozwój kieruję również w <strong>UX</strong> oraz Backend, z wykorzystaniem{" "}
             <strong>Node.js</strong>. Pracuję również z <strong>WordPress</strong> CMS.
           </p>
           <p>
-            Entuzjasta <strong>JamStack</strong>, <strong>Serverless</strong>, <strong>GraphQL</strong> i{' '}
+            Entuzjasta <strong>JamStack</strong>, <strong>Serverless</strong>, <strong>GraphQL</strong> i{" "}
             <strong>Open Source</strong>.
           </p>
         </section>
       </article>
     </Layout>
-  )
-}
+  );
+};
 
 export const pageQuery = graphql`
-  query {
-    site {
-      siteMetadata {
-        title
-        description
-      }
+    query {
+        site {
+            siteMetadata {
+                title
+                description
+            }
+        }
     }
-  }
-`
+`;
 
-export default Index
+export default Index;
