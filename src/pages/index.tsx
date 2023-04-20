@@ -12,7 +12,7 @@ type Props = {
 }
 
 export const Index = ({ data }: Props): JSX.Element => {
-  const { title, description } = data.site.siteMetadata;
+  const { title, description } = data.site.siteMetadata
   return (
     <Layout>
       <SEO title="Strona główna" />
@@ -24,33 +24,40 @@ export const Index = ({ data }: Props): JSX.Element => {
 
         <section className={styles.index__content}>
           <p>
-            Interesuje się technologiami webowymi. Stawiam na możliwie proste i wydajne rozwiązania w
-            zakresie <strong>JavaScript</strong>,{" "}
-            <strong>CSS</strong> czy <strong>HTML</strong>.
+            Zawodowo związany z branżą IT od <strong>ponad 9 lat</strong>. Stawiam na prostotę i wydajność tworzonych
+            aplikacji.
           </p>
           <p>
-            Swój rozwój kieruję również w <strong>UX</strong> oraz Backend, z wykorzystaniem{" "}
-            <strong>Node.js</strong>. Pracuję również z <strong>WordPress</strong> CMS.
+            Pracowałem nad złożonymi aplikacjami branży <strong>FinTech</strong>, <strong>eCommerce</strong>, a także
+            stronami produktowymi znanych, międzynarodowych marek.
           </p>
           <p>
-            Entuzjasta <strong>JamStack</strong>, <strong>Serverless</strong>, <strong>GraphQL</strong> i{" "}
-            <strong>Open Source</strong>.
+            Aktualnie - jestem liderem zespołu Frontend nowego startupu, zajmuję się mentoringiem, wspieram organizacje
+            non-profit oraz tworzę własne produkty.
+          </p>
+          <p>
+            Swój rozwój kieruję w <strong>UX</strong> oraz Backend, z wykorzystaniem frameworków
+            <strong> Node.js</strong>.
+          </p>
+          <p>
+            Jestem otwarty na nowe wyzwania więc jeżeli szukasz kogoś, kto dostarczy Ci <strong>profesjonalnych</strong>{' '}
+            rozwiązań to dobrze trafiłeś!
           </p>
         </section>
       </article>
     </Layout>
-  );
-};
+  )
+}
 
 export const pageQuery = graphql`
-    query {
-        site {
-            siteMetadata {
-                title
-                description
-            }
-        }
+  query {
+    site {
+      siteMetadata {
+        title
+        description
+      }
     }
-`;
+  }
+`
 
-export default Index;
+export default Index
