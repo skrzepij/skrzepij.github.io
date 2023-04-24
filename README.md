@@ -1,6 +1,6 @@
 # Skrzepij Portfolio Page
 
-[![Build Status](https://www.travis-ci.com/skrzepij/skrzepij.github.io.svg?branch=develop)](https://www.travis-ci.com/skrzepij/skrzepij.github.io)
+![Dev Build Status](https://github.com/skrzepij/skrzepij.github.io/actions/workflows/main.yml/badge.svg?branch=develop)
 
 This is the repo for my personal website: 
 
@@ -19,7 +19,7 @@ which should be merged (via PR) to `develop` branch after finishing the work.
 
 ## Build & deploy
 
-Linting, testing, building and deploying process is automated by [Travis CI](https://travis-ci.org/).
+Linting, testing, building and deploying process is automated by ~~[Travis CI](https://travis-ci.org/)~~ [Github Actions](https://github.com/features/actions).
 
 It will be activated every time, when changes affect `develop` branch.
 
