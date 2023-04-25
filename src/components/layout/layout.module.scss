@@ -7,14 +7,15 @@
     content: '';
     top: -50vw;
     bottom: 0;
-    left: -75vw;
+    left: -100vw;
     width: 100vw;
     height: 200vh;
     transform: rotate(20deg);
   }
 
   &__content {
-    @apply container flex flex-col sm:flex-row flex-1 items-center justify-between mx-auto;
+    @apply container items-center justify-between mx-auto flex-1;
+    @apply p-2;
   }
 
   &__aside {
@@ -24,5 +25,21 @@
   &__main {
     @apply max-w-full flex-1 sm:flex-auto relative sm:static z-10;
     width: 1000px;
+  }
+
+  @screen sm {
+    &::before {
+      left: -90vw;
+    }
+
+    &__content {
+      @apply flex;
+    }
+  }
+
+  @screen xl {
+    &::before {
+      left: -75vw;
+    }
   }
 }
