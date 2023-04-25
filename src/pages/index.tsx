@@ -12,7 +12,7 @@ type Props = {
 }
 
 export const Index = ({ data }: Props): JSX.Element => {
-  const { title } = data.site.siteMetadata
+  const { title, description } = data.site.siteMetadata
 
   return (
     <Layout>
