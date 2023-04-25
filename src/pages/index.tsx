@@ -5,7 +5,7 @@ import { Layout } from '../components/layout/layout'
 import { GatsbyDataInterface } from '../api/gatsbyData'
 import { SEO } from '../components/seo/seo'
 
-import * as styles from './index.module.scss'
+import { headerSubtitle, headerTitle, index, indexContent, indexHeader } from './index.module.scss'
 
 type Props = {
   readonly data: GatsbyDataInterface
@@ -13,16 +13,17 @@ type Props = {
 
 export const Index = ({ data }: Props): JSX.Element => {
   const { title, description } = data.site.siteMetadata
+
   return (
     <Layout>
       <SEO title="Strona główna" />
-      <article className={styles.index}>
-        <hgroup className={styles.index__header}>
-          <h2 className={styles.index__title}>Cześć! Jestem Radek</h2>
-          <h3 className={styles.index__subtitle}>Frontend / Web Developer</h3>
+      <article className={index}>
+        <hgroup className={indexHeader}>
+          <h2 className={headerTitle}>Cześć! Jestem Radek</h2>
+          <h3 className={headerSubtitle}>Frontend / Web Developer</h3>
         </hgroup>
 
-        <section className={styles.index__content}>
+        <section className={indexContent}>
           <p>
             Zawodowo związany z branżą IT od <strong>ponad 9 lat</strong>. Stawiam na prostotę i wydajność tworzonych
             aplikacji.
@@ -41,7 +42,7 @@ export const Index = ({ data }: Props): JSX.Element => {
           </p>
           <p>
             Jestem otwarty na nowe wyzwania więc jeżeli szukasz kogoś, kto dostarczy Ci <strong>profesjonalnych</strong>{' '}
-            rozwiązań to dobrze trafiłeś!
+            rozwiązań, to dobrze trafiłeś!
           </p>
         </section>
       </article>
