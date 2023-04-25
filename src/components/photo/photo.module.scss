@@ -1,9 +1,19 @@
 .photo {
-  @apply flex bg-black shadow-picture w-60 md:w-80 m-4;
-  aspect-ratio: 1 / 1;
+  @apply h-64 w-full;
+  @apply bg-black shadow-picture mb-4;
 
   img {
     @apply self-center m-auto p-2 max-h-full;
+  }
+
+  @screen sm {
+    @apply flex;
+    @apply w-60 m-4;
+  }
+
+  @screen md {
+    @apply w-80 h-auto;;
+    aspect-ratio: 1 / 1;
   }
 
   @screen xl {
