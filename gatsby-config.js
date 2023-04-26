@@ -19,11 +19,11 @@ const gatsbyRequiredRules = path.join(
 
 module.exports = {
   siteMetadata: {
-    title: `Radomir Skrzepij`,
+    title: `Radomir Skrzepij - Web Developer`,
     author: `UpCore`,
     authorUrl: `http://upco.re`,
-    description: `Strona osobista`,
-    keywords: `Radomir Skrzepij, strona osobista, frontend developer, front-end, javascript, design`,
+    description: `Frontend / Web developer, nastawiony na budowanie wydajnych i przyjaznych użytkownikowi aplikacji wykorzystując nowoczesne narzędzia programistyczne.`,
+    keywords: `Radomir Skrzepij, strona osobista, frontend developer, front-end, javascript, design, web developer,`,
     social: {
       twitter: 'https://twitter.com/Zyziu10',
       github: 'https://github.com/skrzepij',
