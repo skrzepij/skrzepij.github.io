@@ -4,18 +4,11 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
-const path = require("path");
+const path = require('path')
 // Get paths of Gatsby's required rules, which as of writing is located at:
 // https://github.com/gatsbyjs/gatsby/tree/fbfe3f63dec23d279a27b54b4057dd611dce74bb/packages/
 // gatsby/src/utils/eslint-rules
-const gatsbyRequiredRules = path.join(
-  process.cwd(),
-  "node_modules",
-  "gatsby",
-  "dist",
-  "utils",
-  "eslint-rules"
-);
+const gatsbyRequiredRules = path.join(process.cwd(), 'node_modules', 'gatsby', 'dist', 'utils', 'eslint-rules')
 
 module.exports = {
   siteMetadata: {
@@ -30,6 +23,7 @@ module.exports = {
       facebook: 'https://www.facebook.com/skrzepij',
     },
   },
+  trailingSlash: `always`,
   plugins: [
     `gatsby-plugin-typescript`,
     {
@@ -67,7 +61,7 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Radomir Skrzepij Webpage',
+        name: 'Radomir Skrzepij - Web Developer',
         short_name: 'Radomir Skrzepij',
         start_url: '/',
         background_color: '#141000',
