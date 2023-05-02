@@ -9,11 +9,13 @@ export const Footer = (): JSX.Element => {
 
   return (
     <footer className={footer}>
+      <p>Created with 💛 and 🪄✨</p>
       <p>
-        Created by{' '}
+        © 2023{' '}
         <a href={authorUrl} target="_blank" rel="noopener noreferrer">
-          {author}
-        </a>
+          <strong>{author}</strong>
+        </a>{' '}
+        Radomir Skrzepij
       </p>
     </footer>
   )
