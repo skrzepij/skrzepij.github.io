@@ -1,22 +1,22 @@
-const colors = require('tailwindcss/colors')
+const defaultTheme = require('tailwindcss/defaultTheme')
 
 module.exports = {
-  purge: ['./src/**/*.{ts,tsx}'],
+  content: ['./src/components/**/*.{ts,tsx}', './src/pages/**/*.{ts,tsx}'],
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Roboto', ...defaultTheme.fontFamily.sans],
+        roboto: ['Roboto', 'sans-serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
+      },
       fontSize: {
         md: '1.05rem',
       },
-    },
-    colors: {
-      ...colors,
-      'black-yellow': '#141000',
-      'gray-light': '#484848',
-    },
-    fontFamily: {
-      Roboto: ['Roboto', 'sans-serif'],
-      Montserrat: ['Montserrat', 'sans-serif'],
+      colors: {
+        'black-yellow': '#141000',
+        'gray-light': '#484848',
+      },
     },
     boxShadow: {
       picture: '5px 5px 10px #000',

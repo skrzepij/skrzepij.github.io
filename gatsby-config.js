@@ -4,19 +4,26 @@
  * See: https://www.gatsbyjs.org/docs/gatsby-config/
  */
 
+const path = require('path')
+// Get paths of Gatsby's required rules, which as of writing is located at:
+// https://github.com/gatsbyjs/gatsby/tree/fbfe3f63dec23d279a27b54b4057dd611dce74bb/packages/
+// gatsby/src/utils/eslint-rules
+const gatsbyRequiredRules = path.join(process.cwd(), 'node_modules', 'gatsby', 'dist', 'utils', 'eslint-rules')
+
 module.exports = {
   siteMetadata: {
-    title: `Radomir Skrzepij`,
+    title: `Radomir Skrzepij - Web Developer`,
     author: `UpCore`,
     authorUrl: `http://upco.re`,
-    description: `Strona osobista`,
-    keywords: `Radomir Skrzepij, strona osobista, frontend developer, front-end, javascript, design`,
+    description: `Frontend / Web developer, nastawiony na budowanie wydajnych i przyjaznych użytkownikowi aplikacji wykorzystując nowoczesne narzędzia programistyczne.`,
+    keywords: `Radomir Skrzepij, strona osobista, frontend developer, front-end, javascript, design, web developer,`,
     social: {
       twitter: 'https://twitter.com/Zyziu10',
       github: 'https://github.com/skrzepij',
       facebook: 'https://www.facebook.com/skrzepij',
     },
   },
+  trailingSlash: `always`,
   plugins: [
     `gatsby-plugin-typescript`,
     {
@@ -42,19 +49,19 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-eslint',
       options: {
-        test: /\.js$|\.jsx$|\.ts$|\.tsx$/,
-        exclude: /(node_modules|.cache|public)/,
+        // Gatsby required rules directory
+        rulePaths: [gatsbyRequiredRules],
+        extensions: ['js', 'jsx', 'ts', 'tsx'],
+        exclude: ['node_modules', '.cache', 'public'],
         stages: ['develop'],
-        options: {
-          emitWarning: true,
-          failOnError: true,
-        },
+        emitWarning: true,
+        failOnError: true,
       },
     },
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'Radomir Skrzepij Webpage',
+        name: 'Radomir Skrzepij - Web Developer',
         short_name: 'Radomir Skrzepij',
         start_url: '/',
         background_color: '#141000',

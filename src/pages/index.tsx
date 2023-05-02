@@ -5,7 +5,7 @@ import { Layout } from '../components/layout/layout'
 import { GatsbyDataInterface } from '../api/gatsbyData'
 import { SEO } from '../components/seo/seo'
 
-import * as styles from './index.module.scss'
+import { headerSubtitle, headerTitle, index, indexContent, indexHeader } from './index.module.scss'
 
 type Props = {
   readonly data: GatsbyDataInterface
@@ -13,27 +13,36 @@ type Props = {
 
 export const Index = ({ data }: Props): JSX.Element => {
   const { title, description } = data.site.siteMetadata
+
   return (
     <Layout>
       <SEO title="Strona główna" />
-      <article className={styles.index}>
-        <hgroup className={styles.index__header}>
-          <h2 className={styles.index__title}>Cześć! Jestem Radek</h2>
-          <h3 className={styles.index__subtitle}>Frontend / Web Developer</h3>
+      <article className={index}>
+        <hgroup className={indexHeader}>
+          <h2 className={headerTitle}>Cześć! Jestem Radek</h2>
+          <h3 className={headerSubtitle}>Frontend / Web Developer</h3>
         </hgroup>
 
-        <section className={styles.index__content}>
+        <section className={indexContent}>
           <p>
-            Interesuje się technologiami webowymi. Głównie skupiam się na wydajnym <strong>CSS</strong>,{' '}
-            <strong>JavaScript</strong> i semantycznym <strong>HTML</strong>.
+            Zawodowo związany z branżą IT od <strong>ponad 9 lat</strong>. Stawiam na prostotę i wydajność tworzonych
+            aplikacji.
           </p>
           <p>
-            Niedawno zacząłem się rozwijać w <strong>UX</strong> oraz backendzie, z wykorzystaniem{' '}
-            <strong>Node.js</strong>. Pracuję również z <strong>WordPress</strong> CMS.
+            Pracowałem nad złożonymi aplikacjami branży <strong>FinTech</strong>, <strong>eCommerce</strong>, a także
+            stronami produktowymi znanych, międzynarodowych marek.
           </p>
           <p>
-            Entuzjasta <strong>JamStack</strong>, <strong>Serverless</strong>, <strong>GraphQL</strong> i{' '}
-            <strong>Open Source</strong>.
+            Aktualnie - jestem liderem zespołu Frontend nowego startupu, zajmuję się mentoringiem, wspieram organizacje
+            non-profit oraz tworzę własne produkty.
+          </p>
+          <p>
+            Swój rozwój kieruję w <strong>UX</strong> oraz Backend, z wykorzystaniem frameworków
+            <strong> Node.js</strong>.
+          </p>
+          <p>
+            Jestem otwarty na nowe wyzwania więc jeżeli szukasz kogoś, kto dostarczy Ci <strong>profesjonalnych</strong>{' '}
+            rozwiązań, to dobrze trafiłeś!
           </p>
         </section>
       </article>
