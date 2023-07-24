@@ -9,7 +9,7 @@ export const Footer = (): JSX.Element => {
 
   return (
     <footer className={footer}>
-      <p>Created with 💛 and 🪄✨</p>
+      <p>Crafted with 💛 and 🪄✨</p>
       <p>
         © 2023{' '}
         <a href={authorUrl} target="_blank" rel="noopener noreferrer">
