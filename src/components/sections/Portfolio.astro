@@ -1,0 +1,71 @@
+---
+import imageA from '../../images/image_2d8597-a.jpg';
+import imageB from '../../images/image_2d8597-b.jpg';
+
+const portfolioItems = [
+  {
+    id: '1',
+    title: 'Aplikacja FinTech',
+    description: 'Złożona aplikacja do zarządzania kapitałem obrotowym.',
+    image: imageA,
+    link: '#',
+  },
+  {
+    id: '2',
+    title: 'Platforma eCommerce',
+    description: 'Skalowalna platforma dla dynamicznie rozwijającej się marki.',
+    image: imageB,
+    link: '#',
+  },
+  {
+    id: '3',
+    title: 'Strona Produktowa',
+    description: 'Wizytówka dla międzynarodowej marki z branży FMCG.',
+    image: imageB, // Using imageB as placeholder - can be replaced with actual image
+    link: '#',
+  },
+];
+---
+
+<section id="portfolio" class="swiper-slide">
+  <div class="slide-inner-content">
+    <div class="w-full">
+      <div class="container mx-auto">
+        <div class="text-center mb-12 md:mb-16 fade-in-up-section">
+          <h2 class="section-title">
+            Moje <span class="accent-yellow">Ostatnie Projekty</span>
+          </h2>
+          <p class="section-subtitle">
+            Oto kilka projektów, które pokazują moje podejście do tworzenia aplikacji. Chcesz
+            zobaczyć więcej? Napisz do mnie.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {
+            portfolioItems.map((item, index) => (
+              <div
+                class={`bg-dark-card rounded-lg shadow-xl overflow-hidden group fade-in-up-section delay-${index + 1} card-hover-effect border border-dark-lines`}
+              >
+                <img
+                  src={typeof item.image === 'string' ? item.image : item.image.src}
+                  alt={item.title}
+                  class="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-105"
+                />
+                <div class="p-6">
+                  <h3 class="text-xl font-semibold mb-2 primary-text-color">{item.title}</h3>
+                  <p class="secondary-text-color text-sm mb-4">{item.description}</p>
+                  <a
+                    href={item.link}
+                    class="font-semibold accent-yellow hover-text-accent-yellow-darker transition-colors"
+                  >
+                    Zobacz Projekt →
+                  </a>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

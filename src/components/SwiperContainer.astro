@@ -1,0 +1,233 @@
+---
+import Hero from './sections/Hero.astro';
+import Services from './sections/Services.astro';
+import Portfolio from './sections/Portfolio.astro';
+import About from './sections/About.astro';
+import Contact from './sections/Contact.astro';
+---
+
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <Hero />
+    <Services />
+    <Portfolio />
+    <About />
+    <Contact />
+  </div>
+</div>
+
+<script>
+  import Swiper from 'swiper';
+  import { Mousewheel, Keyboard } from 'swiper/modules';
+  import 'swiper/css/bundle';
+
+  let swiper: Swiper | null = null;
+  const mobileBreakpoint = 768;
+
+  function isMobile(): boolean {
+    // Use matchMedia for more reliable detection in DevTools device mode
+    return window.matchMedia(`(max-width: ${mobileBreakpoint}px)`).matches;
+  }
+
+  function updateActiveNavLink(activeIndex: number) {
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach((link) => {
+      const slideIndex = link.getAttribute('data-slide');
+      link.classList.remove('active', 'accent-yellow');
+      // Compare data-slide attribute with activeIndex
+      if (slideIndex && parseInt(slideIndex) === activeIndex) {
+        link.classList.add('active', 'accent-yellow');
+      }
+    });
+  }
+
+  function initSwiper() {
+    if (isMobile()) {
+      // Mobile: Destroy swiper, enable scroll
+      if (swiper) {
+        swiper.destroy(true, true);
+        swiper = null;
+      }
+      document.documentElement.classList.remove('desktop-swiper');
+      document.body.classList.add('mobile-scroll');
+      document.body.classList.remove('desktop-swiper');
+      return;
+    }
+
+    // Desktop: Initialize Swiper
+    if (!swiper) {
+      const swiperContainer = document.querySelector('.swiper-container') as HTMLElement;
+      if (!swiperContainer) return;
+
+      document.documentElement.classList.add('desktop-swiper');
+      document.body.classList.add('desktop-swiper');
+      document.body.classList.remove('mobile-scroll');
+
+      swiper = new Swiper(swiperContainer, {
+        modules: [Mousewheel, Keyboard],
+        direction: 'horizontal',
+        loop: false,
+        speed: 800,
+        slidesPerView: 1,
+        spaceBetween: 0,
+        mousewheel: {
+          enabled: true,
+          forceToAxis: true,
+          sensitivity: 1,
+          releaseOnEdges: false,
+        },
+        keyboard: {
+          enabled: true,
+          onlyInViewport: true,
+        },
+        on: {
+          init: function (swiper: Swiper) {
+            const firstSlide = swiper.slides[0];
+            if (firstSlide) {
+              const fadeElements = firstSlide.querySelectorAll('.fade-in-up-section');
+              fadeElements.forEach((el: Element) => el.classList.add('visible'));
+            }
+            updateActiveNavLink(swiper.realIndex);
+          },
+          slideChangeTransitionEnd: function (swiper: Swiper) {
+            // Reset all fade-in animations
+            swiper.slides.forEach((slide: HTMLElement) => {
+              const fadeElements = slide.querySelectorAll('.fade-in-up-section');
+              fadeElements.forEach((el: Element) => el.classList.remove('visible'));
+            });
+
+            // Animate current slide
+            const activeSlide = swiper.slides[swiper.activeIndex];
+            if (activeSlide) {
+              const fadeElements = activeSlide.querySelectorAll('.fade-in-up-section');
+              fadeElements.forEach((el: Element, index: number) => {
+                setTimeout(() => el.classList.add('visible'), index * 100);
+              });
+            }
+            updateActiveNavLink(swiper.realIndex);
+          },
+        },
+      });
+    }
+  }
+
+  function handleResize() {
+    initSwiper();
+  }
+
+  function handleNavClick(e: Event) {
+    const target = e.target as HTMLElement;
+    const slideIndex = target.getAttribute('data-slide');
+
+    if (swiper && slideIndex) {
+      e.preventDefault();
+      swiper.slideTo(parseInt(slideIndex));
+    }
+  }
+
+  // Initialize
+  initSwiper();
+
+  // Setup event listeners
+  window.addEventListener('resize', handleResize);
+  document.querySelectorAll('a[data-slide], .nav-link-to-slide').forEach((link) => {
+    link.addEventListener('click', handleNavClick);
+  });
+
+  // Mobile scroll animations
+  if (isMobile()) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          } else {
+            entry.target.classList.remove('visible');
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
+
+    document.querySelectorAll('.fade-in-up-section').forEach((section) => {
+      observer.observe(section);
+    });
+  }
+
+  // Also listen to media query changes for better DevTools support
+  const mediaQuery = window.matchMedia(`(max-width: ${mobileBreakpoint}px)`);
+  mediaQuery.addEventListener('change', () => {
+    initSwiper();
+  });
+</script>
+
+<style is:global>
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .swiper-wrapper {
+    display: flex;
+  }
+
+  /* More specific selector to override Swiper's default CSS styles */
+  /* Swiper's styles come from a later-loaded stylesheet, so we need higher specificity */
+  .swiper-container .swiper-wrapper .swiper-slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    box-sizing: border-box;
+    padding-top: 64px;
+    padding-bottom: 64px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .slide-inner-content {
+    width: 100%;
+    overflow-y: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    max-height: 100%;
+  }
+
+  /* Mobile styles */
+  body.mobile-scroll .swiper-container,
+  body.mobile-scroll .swiper-wrapper,
+  body.mobile-scroll .swiper-slide.swiper-slide {
+    height: auto !important;
+    display: block !important;
+    width: 100% !important;
+    padding: 30px 0 30px 0;
+  }
+
+  body.mobile-scroll .swiper-wrapper {
+  }
+
+  body.mobile-scroll .slide-inner-content {
+    overflow: visible;
+    padding-bottom: 0;
+    max-height: none;
+  }
+
+  body.desktop-swiper {
+    overflow: hidden;
+  }
+
+  html.desktop-swiper,
+  body.desktop-swiper {
+    position: relative;
+    height: 100%;
+    height: 100dvh;
+    overflow: hidden;
+  }
+
+  body.desktop-swiper .swiper-container {
+    height: 100%;
+  }
+</style>
