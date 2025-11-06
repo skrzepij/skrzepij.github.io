@@ -25,7 +25,6 @@ import Contact from './sections/Contact.astro';
   const mobileBreakpoint = 768;
 
   function isMobile(): boolean {
-    // Use matchMedia for more reliable detection in DevTools device mode
     return window.matchMedia(`(max-width: ${mobileBreakpoint}px)`).matches;
   }
 
@@ -34,7 +33,6 @@ import Contact from './sections/Contact.astro';
     navLinks.forEach((link) => {
       const slideIndex = link.getAttribute('data-slide');
       link.classList.remove('active', 'accent-yellow');
-      // Compare data-slide attribute with activeIndex
       if (slideIndex && parseInt(slideIndex) === activeIndex) {
         link.classList.add('active', 'accent-yellow');
       }
@@ -43,7 +41,6 @@ import Contact from './sections/Contact.astro';
 
   function initSwiper() {
     if (isMobile()) {
-      // Mobile: Destroy swiper, enable scroll
       if (swiper) {
         swiper.destroy(true, true);
         swiper = null;
@@ -53,8 +50,6 @@ import Contact from './sections/Contact.astro';
       document.body.classList.remove('desktop-swiper');
       return;
     }
-
-    // Desktop: Initialize Swiper
     if (!swiper) {
       const swiperContainer = document.querySelector('.swiper-container') as HTMLElement;
       if (!swiperContainer) return;
@@ -90,13 +85,11 @@ import Contact from './sections/Contact.astro';
             updateActiveNavLink(swiper.realIndex);
           },
           slideChangeTransitionEnd: function (swiper: Swiper) {
-            // Reset all fade-in animations
             swiper.slides.forEach((slide: HTMLElement) => {
               const fadeElements = slide.querySelectorAll('.fade-in-up-section');
               fadeElements.forEach((el: Element) => el.classList.remove('visible'));
             });
 
-            // Animate current slide
             const activeSlide = swiper.slides[swiper.activeIndex];
             if (activeSlide) {
               const fadeElements = activeSlide.querySelectorAll('.fade-in-up-section');
@@ -125,16 +118,13 @@ import Contact from './sections/Contact.astro';
     }
   }
 
-  // Initialize
   initSwiper();
 
-  // Setup event listeners
   window.addEventListener('resize', handleResize);
   document.querySelectorAll('a[data-slide], .nav-link-to-slide').forEach((link) => {
     link.addEventListener('click', handleNavClick);
   });
 
-  // Mobile scroll animations
   if (isMobile()) {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -154,7 +144,6 @@ import Contact from './sections/Contact.astro';
     });
   }
 
-  // Also listen to media query changes for better DevTools support
   const mediaQuery = window.matchMedia(`(max-width: ${mobileBreakpoint}px)`);
   mediaQuery.addEventListener('change', () => {
     initSwiper();
@@ -173,8 +162,6 @@ import Contact from './sections/Contact.astro';
     display: flex;
   }
 
-  /* More specific selector to override Swiper's default CSS styles */
-  /* Swiper's styles come from a later-loaded stylesheet, so we need higher specificity */
   .swiper-container .swiper-wrapper .swiper-slide {
     display: flex;
     flex-direction: column;
@@ -196,7 +183,6 @@ import Contact from './sections/Contact.astro';
     max-height: 100%;
   }
 
-  /* Mobile styles */
   body.mobile-scroll .swiper-container,
   body.mobile-scroll .swiper-wrapper,
   body.mobile-scroll .swiper-slide.swiper-slide {

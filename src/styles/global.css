@@ -14,7 +14,6 @@
 @layer base {
   html {
     font-size: 16px;
-    /* Base font size - matches HTML */
   }
 
   body {
@@ -53,7 +52,6 @@
     @apply font-bold;
   }
 
-  /* Animations */
   @keyframes fadeInUp {
     from {
       opacity: 0;
@@ -92,18 +90,15 @@
     transition-delay: 0.4s;
   }
 
-  /* Section styles - matching HTML exactly */
   .section-title {
     font-weight: 700;
     font-size: 2.25rem;
-    /* 36px - matches HTML */
     margin-bottom: 1rem;
     color: #E6EDF3;
   }
 
   .section-subtitle {
     font-size: 1.125rem;
-    /* 18px - matches HTML */
     color: #8B949E;
     margin-bottom: 2rem;
     max-width: 600px;
@@ -116,7 +111,6 @@
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
   }
 
-  /* Button styles */
   .btn {
     @apply px-7 py-3 rounded-md font-semibold transition-all duration-300 inline-flex items-center justify-center tracking-wide;
   }
