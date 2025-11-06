@@ -58,3 +58,10 @@ yarn-error.log
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Project documentation (local only)
+.docs/
+
+# Partytown generated files
+public/~partytown/
+dist/~partytown/
