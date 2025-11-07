@@ -3,7 +3,7 @@ export const siteConfig = {
   description:
     'Frontend / Web developer, nastawiony na budowanie wydajnych i przyjaznych użytkownikowi aplikacji wykorzystując nowoczesne narzędzia programistyczne.',
   author: 'Radek Skrzepij',
-  authorUrl: 'http://upco.re',
+  authorUrl: 'https://upco.re',
   url: 'https://skrzepij.github.io',
   keywords:
     'Radomir Skrzepij, strona osobista, frontend developer, front-end, javascript, design, web developer',
