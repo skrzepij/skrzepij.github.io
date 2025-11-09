@@ -9,8 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **BREAKING:** Migrated entire project from legacy HTML/CSS/JS stack to Astro 5 framework
-- **BREAKING:** Replaced Gatsby with Astro as the static site generator
+- **BREAKING:** Migrated entire project from legacy Gatsby 5 stack to Astro 5 framework as the SSG
 - Updated to TypeScript 5.7.2 for better type safety
 - Migrated styling from custom CSS to TailwindCSS 3.4.18
 - Replaced legacy JavaScript with TypeScript
@@ -33,8 +32,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Legacy HTML/CSS/JS implementation
 - Gatsby framework and dependencies
 - jQuery dependencies
-- Migration documentation files (MIGRATION_PLAN.md, CONTEXT_SUMMARY.md, etc.)
-- Partytown library files
 
 ## [0.2.0] - Earlier
 
@@ -50,10 +47,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Migration Notes (0.2.0 → 1.0.0)
 
-The jump from version 0.2.0 to 1.0.0 represents a complete rewrite of the portfolio website. This is a breaking change that migrates from a traditional HTML/CSS/JS approach to a modern Astro-based framework with TypeScript and TailwindCSS.
+The jump from version 0.2.0 to 1.0.0 represents a complete rewrite of the portfolio website. This is a breaking change that migrates from a legacy Gastro 5 approach to a modern Astro-based framework with TypeScript and TailwindCSS.
 
 **Why a major version bump?**
-- Complete framework change (HTML → Astro)
+- Complete framework change (Gatsby → Astro)
 - Breaking changes in project structure
 - New build process and tooling
 - Different development workflow
