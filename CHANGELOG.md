@@ -47,7 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Migration Notes (0.2.0 → 1.0.0)
 
-The jump from version 0.2.0 to 1.0.0 represents a complete rewrite of the portfolio website. This is a breaking change that migrates from a legacy Gastro 5 approach to a modern Astro-based framework with TypeScript and TailwindCSS.
+The jump from version 0.2.0 to 1.0.0 represents a complete rewrite of the portfolio website. This is a breaking change that migrates from a legacy Gatsby 5 approach to a modern Astro-based framework with TypeScript and TailwindCSS.
 
 **Why a major version bump?**
 - Complete framework change (Gatsby → Astro)
