@@ -1,5 +1,6 @@
 ---
 import { siteConfig } from '../config/site';
+import { sanitizeGoogleAnalyticsId } from '../utils/analytics';
 import '../styles/global.css';
 
 interface Props {
@@ -9,6 +10,7 @@ interface Props {
 
 const { title = siteConfig.title, description = siteConfig.description } = Astro.props;
 const fullTitle = title === siteConfig.title ? title : `${siteConfig.title} - ${title}`;
+const validGaId = sanitizeGoogleAnalyticsId(siteConfig.googleAnalyticsId);
 ---
 
 <!doctype html>
@@ -39,18 +41,24 @@ const fullTitle = title === siteConfig.title ? title : `${siteConfig.title} - ${
     <meta property="twitter:description" content={description} />
 
     <!-- Google Analytics -->
-    <script
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${siteConfig.googleAnalyticsId}`}></script>
-    <script
-      is:inline
-      set:html={`
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', '${siteConfig.googleAnalyticsId}');
-    `}
-    />
+    {
+      validGaId && (
+        <>
+          <script
+            is:inline
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${validGaId}`}></script>
+          <script is:inline define:vars={{ gaId: validGaId }}>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              window.dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+            gtag('config', gaId);
+          </script>
+        </>
+      )
+    }
   </head>
   <body>
     <slot />
