@@ -7,7 +7,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   integrations: [
     tailwind(),
-    react(), // dla Swiper (React island)
+    react(), // for Swiper (React island)
     sitemap(),
   ],
   output: 'static',
