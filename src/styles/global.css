@@ -1,0 +1,134 @@
+@import '@fontsource/poppins/400.css';
+@import '@fontsource/poppins/500.css';
+@import '@fontsource/poppins/600.css';
+@import '@fontsource/poppins/700.css';
+@import '@fontsource/poppins/800.css';
+@import '@fontsource/roboto/400.css';
+@import '@fontsource/roboto/500.css';
+@import '@fontsource/roboto/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-size: 16px;
+  }
+
+  body {
+    @apply font-sans font-normal bg-dark-bg text-primary-text;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-sans pb-1;
+  }
+
+  h1,
+  h2 {
+    @apply font-bold;
+  }
+
+  h1 {
+    @apply text-4xl;
+  }
+
+  h2 {
+    @apply text-3xl;
+  }
+
+  h3 {
+    @apply text-xl;
+  }
+
+  p {
+    @apply pb-2;
+  }
+
+  strong {
+    @apply font-bold;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .fade-in-up-section {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .fade-in-up-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .delay-1 {
+    transition-delay: 0.1s;
+  }
+
+  .delay-2 {
+    transition-delay: 0.2s;
+  }
+
+  .delay-3 {
+    transition-delay: 0.3s;
+  }
+
+  .delay-4 {
+    transition-delay: 0.4s;
+  }
+
+  .section-title {
+    font-weight: 700;
+    font-size: 2.25rem;
+    margin-bottom: 1rem;
+    color: #E6EDF3;
+  }
+
+  .section-subtitle {
+    font-size: 1.125rem;
+    color: #8B949E;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .card-hover-effect:hover {
+    @apply -translate-y-2;
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn {
+    @apply px-7 py-3 rounded-md font-semibold transition-all duration-300 inline-flex items-center justify-center tracking-wide;
+  }
+
+  .btn-primary-yellow {
+    @apply bg-accent-yellow text-dark-bg;
+  }
+
+  .btn-primary-yellow:hover {
+    @apply bg-yellow-600 -translate-y-0.5;
+    box-shadow: 0 4px 15px rgba(250, 204, 21, 0.2);
+  }
+
+  .btn-outline-light {
+    @apply bg-transparent text-primary-text border-2 border-dark-lines;
+  }
+
+  .btn-outline-light:hover {
+    @apply border-accent-yellow text-accent-yellow;
+  }
+}

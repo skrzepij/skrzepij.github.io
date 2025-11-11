@@ -1,0 +1,64 @@
+---
+const services = [
+  {
+    icon: 'M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5',
+    title: 'Nowoczesny Web Development',
+    description:
+      'Tworzenie wydajnych stron i aplikacji w oparciu o JAMstack (Next.js, Astro.js), Headless CMS (Payload) i sprawdzone technologie.',
+  },
+  {
+    icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+    title: 'Audyty Jakości i SEO',
+    description:
+      'Analiza i optymalizacja stron pod kątem wydajności, dostępności (WCAG) oraz pozycjonowania w wyszukiwarkach (SEO).',
+  },
+  {
+    icon: 'M8 9l4-4 4 4m0 6l-4 4-4-4',
+    title: 'Konsultacje i Mentoring',
+    description:
+      'Dobór stosu technologicznego, wsparcie w rozwoju kariery, organizacja pracy zespołu i mentoring dla programistów.',
+  },
+];
+---
+
+<section id="services" class="swiper-slide">
+  <div class="slide-inner-content">
+    <div class="w-full">
+      <div class="container mx-auto">
+        <div class="text-center mb-12 md:mb-16 fade-in-up-section">
+          <h2 class="section-title">
+            Co <span class="accent-yellow">Oferuję?</span>
+          </h2>
+          <p class="section-subtitle">
+            Dostarczam kompleksowe usługi, które przekładają się na realną wartość dla Twojego
+            biznesu - od audytów po wdrożenie nowoczesnych rozwiązań.
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {
+            services.map((service, index) => (
+              <div
+                class={`bg-dark-bg p-8 rounded-lg border border-dark-lines text-center fade-in-up-section delay-${index + 1} card-hover-effect`}
+              >
+                <div class="bg-accent-yellow text-dark-bg rounded-lg w-16 h-16 flex items-center justify-center mx-auto mb-6 shadow-md">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-8 h-8"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                  >
+                    <path stroke-linecap="round" stroke-linejoin="round" d={service.icon} />
+                  </svg>
+                </div>
+                <h3 class="text-xl font-semibold mb-3 primary-text-color">{service.title}</h3>
+                <p class="secondary-text-color text-sm">{service.description}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

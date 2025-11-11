@@ -1,0 +1,28 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer
+  id="page-footer"
+  class="bg-dark-card text-slate-400 border-t border-dark-lines text-xs fixed-footer"
+>
+  <div class="container mx-auto text-center">
+    <p class="text-sm pb-0">&copy; {currentYear} Radomir Skrzepij. Crafted with 💛 and 🪄✨</p>
+  </div>
+</footer>
+
+<style>
+  body.mobile-scroll .fixed-footer {
+    position: static;
+    height: auto;
+    padding: 1rem;
+  }
+
+  body.desktop-swiper .fixed-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 40;
+  }
+</style>
