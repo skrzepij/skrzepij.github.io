@@ -8,7 +8,7 @@
       <div class="container mx-auto">
         <div class="text-center mb-10 md:mb-14 fade-in-up-section">
           <h2 class="section-title">
-            Skontaktuj się <span class="accent-yellow">ze Mną</span>
+            Skontaktuj się <span class="text-accent-yellow">ze Mną</span>
           </h2>
           <p class="section-subtitle">
             Masz ciekawy projekt lub szukasz wsparcia? Chętnie poznam Twoje potrzeby. Wypełnij
@@ -21,7 +21,7 @@
           <form id="contact-form">
             <div class="grid sm:grid-cols-2 gap-6 mb-6">
               <div>
-                <label for="name" class="block text-sm font-medium secondary-text-color mb-1">
+                <label for="name" class="block text-sm font-medium text-secondary-text mb-1">
                   Imię i Nazwisko
                 </label>
                 <input
@@ -29,12 +29,12 @@
                   name="name"
                   id="name"
                   required
-                  class="w-full px-4 py-3 bg-dark-bg border border-dark-lines rounded-md focus:ring-1 focus:ring-accent-yellow focus:border-accent-yellow outline-none transition-all duration-300 primary-text-color"
+                  class="w-full px-4 py-3 bg-dark-bg border border-dark-lines rounded-md focus:ring-1 focus:ring-accent-yellow focus:border-accent-yellow outline-none transition-all duration-300 text-primary-text"
                   placeholder="Twoje Imię i Nazwisko"
                 />
               </div>
               <div>
-                <label for="email" class="block text-sm font-medium secondary-text-color mb-1">
+                <label for="email" class="block text-sm font-medium text-secondary-text mb-1">
                   Adres Email
                 </label>
                 <input
@@ -42,25 +42,25 @@
                   name="email"
                   id="email"
                   required
-                  class="w-full px-4 py-3 bg-dark-bg border border-dark-lines rounded-md focus:ring-1 focus:ring-accent-yellow focus:border-accent-yellow outline-none transition-all duration-300 primary-text-color"
+                  class="w-full px-4 py-3 bg-dark-bg border border-dark-lines rounded-md focus:ring-1 focus:ring-accent-yellow focus:border-accent-yellow outline-none transition-all duration-300 text-primary-text"
                   placeholder="twoj@email.com"
                 />
               </div>
             </div>
             <div class="mb-6">
-              <label for="subject" class="block text-sm font-medium secondary-text-color mb-1">
+              <label for="subject" class="block text-sm font-medium text-secondary-text mb-1">
                 Temat
               </label>
               <input
                 type="text"
                 name="subject"
                 id="subject"
-                class="w-full px-4 py-3 bg-dark-bg border border-dark-lines rounded-md focus:ring-1 focus:ring-accent-yellow focus:border-accent-yellow outline-none transition-all duration-300 primary-text-color"
+                class="w-full px-4 py-3 bg-dark-bg border border-dark-lines rounded-md focus:ring-1 focus:ring-accent-yellow focus:border-accent-yellow outline-none transition-all duration-300 text-primary-text"
                 placeholder="Czego dotyczy Twoja wiadomość?"
               />
             </div>
             <div class="mb-8">
-              <label for="message" class="block text-sm font-medium secondary-text-color mb-1">
+              <label for="message" class="block text-sm font-medium text-secondary-text mb-1">
                 Wiadomość
               </label>
               <textarea
@@ -68,7 +68,7 @@
                 id="message"
                 rows="5"
                 required
-                class="w-full px-4 py-3 bg-dark-bg border border-dark-lines rounded-md focus:ring-1 focus:ring-accent-yellow focus:border-accent-yellow outline-none transition-all duration-300 primary-text-color"
+                class="w-full px-4 py-3 bg-dark-bg border border-dark-lines rounded-md focus:ring-1 focus:ring-accent-yellow focus:border-accent-yellow outline-none transition-all duration-300 text-primary-text"
                 placeholder="Opisz swój projekt lub pytanie..."></textarea>
             </div>
             <div>
@@ -94,7 +94,7 @@
 
       // TODO: Integrate with API route when ready
       formResponse.textContent = 'Dziękuję! Twoja wiadomość została "wysłana". (To jest demo)';
-      formResponse.className = 'mt-6 text-center accent-yellow font-medium';
+      formResponse.className = 'mt-6 text-center text-accent-yellow font-medium';
 
       contactForm.reset();
 

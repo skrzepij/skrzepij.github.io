@@ -33,7 +33,7 @@ const portfolioItems = [
       <div class="container mx-auto">
         <div class="text-center mb-12 md:mb-16 fade-in-up-section">
           <h2 class="section-title">
-            Moje <span class="accent-yellow">Ostatnie Projekty</span>
+            Moje <span class="text-accent-yellow">Ostatnie Projekty</span>
           </h2>
           <p class="section-subtitle">
             Oto kilka projektów, które pokazują moje podejście do tworzenia aplikacji. Chcesz
@@ -52,11 +52,11 @@ const portfolioItems = [
                   class="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div class="p-6">
-                  <h3 class="text-xl font-semibold mb-2 primary-text-color">{item.title}</h3>
-                  <p class="secondary-text-color text-sm mb-4">{item.description}</p>
+                  <h3 class="text-xl font-semibold mb-2 text-primary-text">{item.title}</h3>
+                  <p class="text-secondary-text text-sm mb-4">{item.description}</p>
                   <a
                     href={item.link}
-                    class="font-semibold accent-yellow hover-text-accent-yellow-darker transition-colors"
+                    class="font-semibold text-accent-yellow hover:text-accent-yellow-darker transition-colors"
                   >
                     Zobacz Projekt →
                   </a>

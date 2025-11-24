@@ -4,6 +4,7 @@ import Services from './sections/Services.astro';
 import Portfolio from './sections/Portfolio.astro';
 import About from './sections/About.astro';
 import Contact from './sections/Contact.astro';
+import ScrollIndicator from './ui/ScrollIndicator.astro';
 ---
 
 <div class="swiper-container">
@@ -15,6 +16,8 @@ import Contact from './sections/Contact.astro';
     <Contact />
   </div>
 </div>
+
+<ScrollIndicator />
 
 <script>
   import Swiper from 'swiper';
@@ -32,9 +35,9 @@ import Contact from './sections/Contact.astro';
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach((link) => {
       const slideIndex = link.getAttribute('data-slide');
-      link.classList.remove('active', 'accent-yellow');
+      link.classList.remove('active', 'text-accent-yellow');
       if (slideIndex && parseInt(slideIndex) === activeIndex) {
-        link.classList.add('active', 'accent-yellow');
+        link.classList.add('active', 'text-accent-yellow');
       }
     });
   }
@@ -83,6 +86,12 @@ import Contact from './sections/Contact.astro';
               fadeElements.forEach((el: Element) => el.classList.add('visible'));
             }
             updateActiveNavLink(swiper.realIndex);
+
+            window.dispatchEvent(
+              new CustomEvent('swiper-initialized', {
+                detail: { swiperInstance: swiper },
+              })
+            );
           },
           slideChangeTransitionEnd: function (swiper: Swiper) {
             swiper.slides.forEach((slide: HTMLElement) => {
@@ -98,6 +107,15 @@ import Contact from './sections/Contact.astro';
               });
             }
             updateActiveNavLink(swiper.realIndex);
+
+            window.dispatchEvent(
+              new CustomEvent('swiper-slide-change', {
+                detail: {
+                  activeIndex: swiper.realIndex,
+                  totalSlides: swiper.slides.length,
+                },
+              })
+            );
           },
         },
       });
@@ -169,8 +187,8 @@ import Contact from './sections/Contact.astro';
     justify-content: center;
     height: 100%;
     box-sizing: border-box;
-    padding-top: 64px;
-    padding-bottom: 64px;
+    padding-top: 70px;
+    padding-bottom: 60px;
     width: 100%;
     overflow: hidden;
   }
