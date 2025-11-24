@@ -30,11 +30,13 @@
 </div>
 
 <script>
+  import type Swiper from 'swiper';
+
   const scrollIndicator = document.getElementById('scroll-indicator');
   const scrollIndicatorPrev = document.getElementById('scroll-indicator-prev');
   const scrollIndicatorNext = document.getElementById('scroll-indicator-next');
   const scrollIndicatorDots = document.getElementById('scroll-indicator-dots');
-  let swiperInstance: any = null;
+  let swiperInstance: Swiper | null = null;
 
   function createProgressDots(totalSlides: number) {
     if (!scrollIndicatorDots) return;
