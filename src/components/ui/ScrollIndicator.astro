@@ -1,0 +1,219 @@
+---
+
+---
+
+<div id="scroll-indicator" class="scroll-indicator hidden">
+  <button id="scroll-indicator-prev" aria-label="Poprzednia sekcja" class="scroll-indicator-button">
+    <svg
+      class="scroll-indicator-icon"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"
+      ></path>
+    </svg>
+  </button>
+  <div id="scroll-indicator-dots" class="scroll-indicator-dots"></div>
+  <button id="scroll-indicator-next" aria-label="Następna sekcja" class="scroll-indicator-button">
+    <svg
+      class="scroll-indicator-icon"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+  </button>
+</div>
+
+<script>
+  import type Swiper from 'swiper';
+
+  const scrollIndicator = document.getElementById('scroll-indicator');
+  const scrollIndicatorPrev = document.getElementById('scroll-indicator-prev');
+  const scrollIndicatorNext = document.getElementById('scroll-indicator-next');
+  const scrollIndicatorDots = document.getElementById('scroll-indicator-dots');
+  let swiperInstance: Swiper | null = null;
+
+  function createProgressDots(totalSlides: number) {
+    if (!scrollIndicatorDots) return;
+
+    scrollIndicatorDots.innerHTML = '';
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'scroll-indicator-dot';
+      dot.setAttribute('aria-label', `Przejdź do sekcji ${i + 1}`);
+      dot.setAttribute('data-slide-index', i.toString());
+      dot.addEventListener('click', () => {
+        if (swiperInstance) {
+          swiperInstance.slideTo(i);
+        }
+      });
+      scrollIndicatorDots.appendChild(dot);
+    }
+  }
+
+  function updateScrollIndicator(activeIndex: number, totalSlides: number) {
+    if (!scrollIndicator || !scrollIndicatorPrev || !scrollIndicatorNext || !scrollIndicatorDots)
+      return;
+
+    const isFirstSlide = activeIndex === 0;
+    const isLastSlide = activeIndex === totalSlides - 1;
+    const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+    if (isMobile) {
+      scrollIndicator.classList.add('hidden');
+      return;
+    }
+
+    scrollIndicator.classList.remove('hidden');
+
+    if (isFirstSlide) {
+      scrollIndicatorPrev.classList.add('hidden');
+    } else {
+      scrollIndicatorPrev.classList.remove('hidden');
+    }
+
+    if (isLastSlide) {
+      scrollIndicatorNext.classList.add('hidden');
+    } else {
+      scrollIndicatorNext.classList.remove('hidden');
+    }
+
+    const dots = scrollIndicatorDots.querySelectorAll('.scroll-indicator-dot');
+    dots.forEach((dot, index) => {
+      if (index === activeIndex) {
+        dot.classList.add('active');
+      } else {
+        dot.classList.remove('active');
+      }
+    });
+  }
+
+  window.addEventListener('swiper-initialized', ((e: CustomEvent) => {
+    swiperInstance = e.detail.swiperInstance;
+    if (swiperInstance) {
+      createProgressDots(swiperInstance.slides.length);
+      updateScrollIndicator(swiperInstance.realIndex, swiperInstance.slides.length);
+    }
+  }) as EventListener);
+
+  window.addEventListener('swiper-slide-change', ((e: CustomEvent) => {
+    updateScrollIndicator(e.detail.activeIndex, e.detail.totalSlides);
+  }) as EventListener);
+
+  if (scrollIndicatorPrev) {
+    scrollIndicatorPrev.addEventListener('click', () => {
+      if (swiperInstance && swiperInstance.realIndex > 0) {
+        swiperInstance.slidePrev();
+      }
+    });
+  }
+
+  if (scrollIndicatorNext) {
+    scrollIndicatorNext.addEventListener('click', () => {
+      if (swiperInstance && swiperInstance.realIndex < swiperInstance.slides.length - 1) {
+        swiperInstance.slideNext();
+      }
+    });
+  }
+
+  const mediaQuery = window.matchMedia('(max-width: 768px)');
+  mediaQuery.addEventListener('change', () => {
+    if (swiperInstance) {
+      updateScrollIndicator(swiperInstance.realIndex, swiperInstance.slides.length);
+    }
+  });
+</script>
+
+<style is:global>
+  .scroll-indicator {
+    position: fixed;
+    bottom: 1.7rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 40;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    pointer-events: none;
+  }
+
+  .scroll-indicator.hidden {
+    display: none;
+  }
+
+  .scroll-indicator-button {
+    pointer-events: all;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.375rem;
+    font-weight: 600;
+    background: transparent;
+    color: #e6edf3;
+    border: 2px solid #30363d;
+    min-width: 40px;
+    width: 40px;
+  }
+
+  .scroll-indicator-button.hidden {
+    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .scroll-indicator-button:hover {
+    border-color: #facc15;
+    color: #facc15;
+  }
+
+  .scroll-indicator-icon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .scroll-indicator-dots {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    pointer-events: all;
+  }
+
+  .scroll-indicator-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: #8b949e;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0;
+    opacity: 0.5;
+  }
+
+  .scroll-indicator-dot:hover {
+    background: #facc15;
+    opacity: 1;
+    transform: scale(1.2);
+  }
+
+  .scroll-indicator-dot.active {
+    background: #facc15;
+    opacity: 1;
+    width: 10px;
+    height: 10px;
+  }
+
+  @media (max-width: 768px) {
+    .scroll-indicator {
+      display: none !important;
+    }
+  }
+</style>
