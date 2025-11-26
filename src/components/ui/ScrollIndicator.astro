@@ -60,7 +60,7 @@
       };
       dot.addEventListener('click', handleActivate);
       dot.addEventListener('keydown', (e: KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
+        if (e.key === 'Enter' || e.key === 'Space') {
           e.preventDefault();
           handleActivate();
         }
