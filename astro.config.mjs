@@ -1,15 +1,10 @@
 import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
-import react from '@astrojs/react';
 import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [
-    tailwind(),
-    react(), // for Swiper (React island)
-    sitemap(),
-  ],
+  integrations: [tailwind(), sitemap()],
   output: 'static',
   site: 'https://skrzepij.github.io',
   base: '/',

@@ -109,11 +109,11 @@
       createProgressDots(swiperInstance.slides.length);
       updateScrollIndicator(swiperInstance.realIndex, swiperInstance.slides.length);
     }
-  }) as EventListener);
+  }) as (e: Event) => void);
 
   window.addEventListener('swiper-slide-change', ((e: CustomEvent) => {
     updateScrollIndicator(e.detail.activeIndex, e.detail.totalSlides);
-  }) as EventListener);
+  }) as (e: Event) => void);
 
   if (scrollIndicatorPrev) {
     scrollIndicatorPrev.addEventListener('click', () => {
