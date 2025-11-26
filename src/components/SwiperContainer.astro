@@ -45,12 +45,14 @@ import ScrollIndicator from './ui/ScrollIndicator.astro';
   function isNaturallyFocusable(element: HTMLElement): boolean {
     const tagName = element.tagName.toLowerCase();
     return (
-      tagName === 'a' ||
-      tagName === 'button' ||
-      tagName === 'input' ||
-      tagName === 'textarea' ||
-      tagName === 'select' ||
-      element.hasAttribute('contenteditable')
+      (
+        tagName === 'a' ||
+        tagName === 'button' ||
+        tagName === 'input' ||
+        tagName === 'textarea' ||
+        tagName === 'select' ||
+        element.hasAttribute('contenteditable')
+      ) && !element.hasAttribute('disabled')
     );
   }
 
