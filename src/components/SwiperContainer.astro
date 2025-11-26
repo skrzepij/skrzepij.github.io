@@ -42,6 +42,18 @@ import ScrollIndicator from './ui/ScrollIndicator.astro';
     });
   }
 
+  function isNaturallyFocusable(element: HTMLElement): boolean {
+    const tagName = element.tagName.toLowerCase();
+    return (
+      tagName === 'a' ||
+      tagName === 'button' ||
+      tagName === 'input' ||
+      tagName === 'textarea' ||
+      tagName === 'select' ||
+      element.hasAttribute('contenteditable')
+    );
+  }
+
   function updateTabIndex(swiper: Swiper) {
     swiper.slides.forEach((slide: HTMLElement, index: number) => {
       const isActive = index === swiper.activeIndex;
@@ -50,16 +62,7 @@ import ScrollIndicator from './ui/ScrollIndicator.astro';
       if (isActive) {
         slide.setAttribute('tabindex', '-1');
         allElements.forEach((el) => {
-          const tagName = el.tagName.toLowerCase();
-          const isNaturallyFocusable =
-            tagName === 'a' ||
-            tagName === 'button' ||
-            tagName === 'input' ||
-            tagName === 'textarea' ||
-            tagName === 'select' ||
-            el.hasAttribute('contenteditable');
-
-          if (isNaturallyFocusable) {
+          if (isNaturallyFocusable(el)) {
             if (el.getAttribute('tabindex') === '-1') {
               el.removeAttribute('tabindex');
             }
@@ -73,16 +76,7 @@ import ScrollIndicator from './ui/ScrollIndicator.astro';
       } else {
         slide.setAttribute('tabindex', '-1');
         allElements.forEach((el) => {
-          const tagName = el.tagName.toLowerCase();
-          const isNaturallyFocusable =
-            tagName === 'a' ||
-            tagName === 'button' ||
-            tagName === 'input' ||
-            tagName === 'textarea' ||
-            tagName === 'select' ||
-            el.hasAttribute('contenteditable');
-
-          if (isNaturallyFocusable || el.hasAttribute('tabindex')) {
+          if (isNaturallyFocusable(el) || el.hasAttribute('tabindex')) {
             el.setAttribute('tabindex', '-1');
           }
         });
@@ -198,6 +192,23 @@ import ScrollIndicator from './ui/ScrollIndicator.astro';
     }
   }
 
+  function getFocusableElements(slide: HTMLElement): HTMLElement[] {
+    return Array.from(
+      slide.querySelectorAll<HTMLElement>(
+        'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => {
+      const style = window.getComputedStyle(el);
+      return (
+        style.display !== 'none' &&
+        style.visibility !== 'hidden' &&
+        !el.hasAttribute('hidden') &&
+        !el.closest('.hidden') &&
+        el.offsetParent !== null
+      );
+    });
+  }
+
   function handleKeyDown(e: KeyboardEvent) {
     if (e.key !== 'Tab' || !swiper || isMobile()) return;
 
@@ -215,42 +226,12 @@ import ScrollIndicator from './ui/ScrollIndicator.astro';
       e.preventDefault();
       e.stopPropagation();
 
-      if (e.shiftKey) {
-        const focusableElements = Array.from(
-          activeSlide.querySelectorAll<HTMLElement>(
-            'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
-          )
-        ).filter((el) => {
-          const style = window.getComputedStyle(el);
-          return (
-            style.display !== 'none' &&
-            style.visibility !== 'hidden' &&
-            !el.hasAttribute('hidden') &&
-            !el.closest('.hidden') &&
-            el.offsetParent !== null
-          );
-        });
+      const focusableElements = getFocusableElements(activeSlide);
 
-        if (focusableElements.length > 0) {
+      if (focusableElements.length > 0) {
+        if (e.shiftKey) {
           focusableElements[focusableElements.length - 1].focus();
-        }
-      } else {
-        const focusableElements = Array.from(
-          activeSlide.querySelectorAll<HTMLElement>(
-            'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
-          )
-        ).filter((el) => {
-          const style = window.getComputedStyle(el);
-          return (
-            style.display !== 'none' &&
-            style.visibility !== 'hidden' &&
-            !el.hasAttribute('hidden') &&
-            !el.closest('.hidden') &&
-            el.offsetParent !== null
-          );
-        });
-
-        if (focusableElements.length > 0) {
+        } else {
           focusableElements[0].focus();
         }
       }

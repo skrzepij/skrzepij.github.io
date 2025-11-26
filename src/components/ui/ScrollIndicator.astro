@@ -53,9 +53,16 @@
       dot.setAttribute('aria-label', `Przejdź do sekcji ${i + 1}`);
       dot.setAttribute('data-slide-index', i.toString());
       dot.setAttribute('tabindex', '0');
-      dot.addEventListener('click', () => {
+      const handleActivate = () => {
         if (swiperInstance) {
           swiperInstance.slideTo(i);
+        }
+      };
+      dot.addEventListener('click', handleActivate);
+      dot.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handleActivate();
         }
       });
       scrollIndicatorDots.appendChild(dot);

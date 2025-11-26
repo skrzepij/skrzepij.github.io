@@ -7,8 +7,10 @@ import prettierPlugin from 'eslint-plugin-prettier';
 
 export default [
   {
-    ...js.configs.recommended,
     files: ['**/*.{js,jsx}'],
+    rules: {
+      ...js.configs.recommended.rules,
+    },
   },
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
@@ -52,12 +54,6 @@ export default [
       'prettier/prettier': 'error',
       '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
       '@typescript-eslint/no-explicit-any': 'warn',
-      'no-undef': 'off',
-    },
-  },
-  {
-    files: ['**/*.astro'],
-    rules: {
       'no-undef': 'off',
     },
   },
