@@ -6,8 +6,8 @@ import prettierConfig from 'eslint-config-prettier';
 import prettierPlugin from 'eslint-plugin-prettier';
 
 export default [
-  js.configs.recommended,
   {
+    ...js.configs.recommended,
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       parser: tsParser,
@@ -31,12 +31,24 @@ export default [
   ...astroPlugin.configs.recommended,
   {
     files: ['**/*.astro'],
+    languageOptions: {
+      parserOptions: {
+        parser: tsParser,
+        extraFileExtensions: ['.astro'],
+        project: './tsconfig.json',
+      },
+    },
     plugins: {
+      '@typescript-eslint': tsPlugin,
       prettier: prettierPlugin,
     },
     rules: {
+      ...tsPlugin.configs.recommended.rules,
       ...prettierConfig.rules,
       'prettier/prettier': 'error',
+      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-explicit-any': 'warn',
+      'no-undef': 'off',
     },
   },
   {

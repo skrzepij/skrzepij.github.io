@@ -6,6 +6,7 @@ export default {
     extend: {
       colors: {
         'accent-yellow': '#FACC15',
+        'accent-yellow-darker': '#F59E0B',
         'dark-bg': '#0D1117',
         'dark-card': '#161B22',
         'dark-lines': '#30363D',
@@ -21,39 +22,7 @@ export default {
       },
     },
   },
-  plugins: [
-    function ({ addUtilities }) {
-      addUtilities({
-        '.primary-text-color': {
-          color: '#E6EDF3',
-        },
-        '.secondary-text-color': {
-          color: '#8B949E',
-        },
-        '.accent-yellow': {
-          color: '#FACC15',
-        },
-        '.bg-accent-yellow': {
-          'background-color': '#FACC15',
-        },
-        '.border-accent-yellow': {
-          'border-color': '#FACC15',
-        },
-        '.hover-bg-accent-yellow-darker:hover': {
-          'background-color': '#F59E0B',
-        },
-        '.hover-text-accent-yellow-darker:hover': {
-          color: '#F59E0B',
-        },
-        '.bg-dark-card': {
-          'background-color': '#161B22',
-        },
-        '.border-dark-lines': {
-          'border-color': '#30363D',
-        },
-      });
-    },
-  ],
+  plugins: [],
   corePlugins: {
     dropShadow: false,
   },
