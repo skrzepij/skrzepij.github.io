@@ -5,13 +5,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        'accent-yellow': '#FACC15',
-        'accent-yellow-darker': '#F59E0B',
-        'dark-bg': '#0D1117',
-        'dark-card': '#161B22',
-        'dark-lines': '#30363D',
-        'primary-text': '#E6EDF3',
-        'secondary-text': '#8B949E',
+        'accent-yellow': 'var(--color-accent-yellow)',
+        'accent-yellow-darker': 'var(--color-accent-yellow-darker)',
+        'dark-bg': 'var(--color-dark-bg)',
+        'dark-card': 'var(--color-dark-card)',
+        'dark-lines': 'var(--color-dark-lines)',
+        'primary-text': 'var(--color-primary-text)',
+        'secondary-text': 'var(--color-secondary-text)',
       },
       fontFamily: {
         sans: ['Poppins', 'sans-serif'],

@@ -2,7 +2,12 @@
 
 ---
 
-<div id="scroll-indicator" class="scroll-indicator hidden">
+<div
+  id="scroll-indicator"
+  class="scroll-indicator hidden"
+  role="navigation"
+  aria-label="Nawigacja między sekcjami"
+>
   <button id="scroll-indicator-prev" aria-label="Poprzednia sekcja" class="scroll-indicator-button">
     <svg
       class="scroll-indicator-icon"
@@ -47,9 +52,17 @@
       dot.className = 'scroll-indicator-dot';
       dot.setAttribute('aria-label', `Przejdź do sekcji ${i + 1}`);
       dot.setAttribute('data-slide-index', i.toString());
-      dot.addEventListener('click', () => {
+      dot.setAttribute('tabindex', '0');
+      const handleActivate = () => {
         if (swiperInstance) {
           swiperInstance.slideTo(i);
+        }
+      };
+      dot.addEventListener('click', handleActivate);
+      dot.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === 'Space') {
+          e.preventDefault();
+          handleActivate();
         }
       });
       scrollIndicatorDots.appendChild(dot);
@@ -73,14 +86,18 @@
 
     if (isFirstSlide) {
       scrollIndicatorPrev.classList.add('hidden');
+      scrollIndicatorPrev.setAttribute('tabindex', '-1');
     } else {
       scrollIndicatorPrev.classList.remove('hidden');
+      scrollIndicatorPrev.setAttribute('tabindex', '0');
     }
 
     if (isLastSlide) {
       scrollIndicatorNext.classList.add('hidden');
+      scrollIndicatorNext.setAttribute('tabindex', '-1');
     } else {
       scrollIndicatorNext.classList.remove('hidden');
+      scrollIndicatorNext.setAttribute('tabindex', '0');
     }
 
     const dots = scrollIndicatorDots.querySelectorAll('.scroll-indicator-dot');
@@ -99,11 +116,11 @@
       createProgressDots(swiperInstance.slides.length);
       updateScrollIndicator(swiperInstance.realIndex, swiperInstance.slides.length);
     }
-  }) as EventListener);
+  }) as (e: Event) => void);
 
   window.addEventListener('swiper-slide-change', ((e: CustomEvent) => {
     updateScrollIndicator(e.detail.activeIndex, e.detail.totalSlides);
-  }) as EventListener);
+  }) as (e: Event) => void);
 
   if (scrollIndicatorPrev) {
     scrollIndicatorPrev.addEventListener('click', () => {
@@ -157,10 +174,12 @@
     border-radius: 0.375rem;
     font-weight: 600;
     background: transparent;
-    color: #e6edf3;
-    border: 2px solid #30363d;
+    color: var(--color-primary-text);
+    border: 2px solid var(--color-dark-lines);
     min-width: 40px;
     width: 40px;
+    height: 44px;
+    flex-shrink: 0;
   }
 
   .scroll-indicator-button.hidden {
@@ -170,8 +189,15 @@
   }
 
   .scroll-indicator-button:hover {
-    border-color: #facc15;
-    color: #facc15;
+    border-color: var(--color-accent-yellow);
+    color: var(--color-accent-yellow);
+  }
+
+  .scroll-indicator-button:focus-visible {
+    border-color: var(--color-accent-yellow);
+    color: var(--color-accent-yellow);
+    outline: 2px solid var(--color-accent-yellow);
+    outline-offset: 2px;
   }
 
   .scroll-indicator-icon {
@@ -191,7 +217,7 @@
     height: 8px;
     border-radius: 50%;
     border: none;
-    background: #8b949e;
+    background: var(--color-secondary-text);
     cursor: pointer;
     transition: all 0.3s ease;
     padding: 0;
@@ -199,13 +225,21 @@
   }
 
   .scroll-indicator-dot:hover {
-    background: #facc15;
+    background: var(--color-accent-yellow);
     opacity: 1;
     transform: scale(1.2);
   }
 
+  .scroll-indicator-dot:focus-visible {
+    background: var(--color-accent-yellow);
+    opacity: 1;
+    transform: scale(1.2);
+    outline: 2px solid var(--color-accent-yellow);
+    outline-offset: 2px;
+  }
+
   .scroll-indicator-dot.active {
-    background: #facc15;
+    background: var(--color-accent-yellow);
     opacity: 1;
     width: 10px;
     height: 10px;

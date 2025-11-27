@@ -42,6 +42,49 @@ import ScrollIndicator from './ui/ScrollIndicator.astro';
     });
   }
 
+  function isNaturallyFocusable(element: HTMLElement): boolean {
+    const tagName = element.tagName.toLowerCase();
+    return (
+      (tagName === 'a' ||
+        tagName === 'button' ||
+        tagName === 'input' ||
+        tagName === 'textarea' ||
+        tagName === 'select' ||
+        element.hasAttribute('contenteditable')) &&
+      !element.hasAttribute('disabled')
+    );
+  }
+
+  function updateTabIndex(swiper: Swiper) {
+    swiper.slides.forEach((slide: HTMLElement, index: number) => {
+      const isActive = index === swiper.activeIndex;
+      const allElements = slide.querySelectorAll<HTMLElement>('*');
+
+      if (isActive) {
+        slide.setAttribute('tabindex', '-1');
+        allElements.forEach((el) => {
+          if (isNaturallyFocusable(el)) {
+            if (el.getAttribute('tabindex') === '-1') {
+              el.removeAttribute('tabindex');
+            }
+          } else if (el.hasAttribute('tabindex')) {
+            const currentTabIndex = el.getAttribute('tabindex');
+            if (currentTabIndex === '-1') {
+              el.removeAttribute('tabindex');
+            }
+          }
+        });
+      } else {
+        slide.setAttribute('tabindex', '-1');
+        allElements.forEach((el) => {
+          if (isNaturallyFocusable(el) || el.hasAttribute('tabindex')) {
+            el.setAttribute('tabindex', '-1');
+          }
+        });
+      }
+    });
+  }
+
   function initSwiper() {
     if (isMobile()) {
       if (swiper) {
@@ -86,6 +129,7 @@ import ScrollIndicator from './ui/ScrollIndicator.astro';
               fadeElements.forEach((el: Element) => el.classList.add('visible'));
             }
             updateActiveNavLink(swiper.realIndex);
+            updateTabIndex(swiper);
 
             window.dispatchEvent(
               new CustomEvent('swiper-initialized', {
@@ -93,13 +137,25 @@ import ScrollIndicator from './ui/ScrollIndicator.astro';
               })
             );
           },
+          slideChangeTransitionStart: function (swiper: Swiper) {
+            const currentElement = document.activeElement as HTMLElement;
+            if (currentElement) {
+              const wasInPreviousSlide = swiper.slides.some((slide: HTMLElement, index: number) => {
+                return index !== swiper.activeIndex && slide.contains(currentElement);
+              });
+
+              if (wasInPreviousSlide) {
+                currentElement.blur();
+              }
+            }
+          },
           slideChangeTransitionEnd: function (swiper: Swiper) {
             swiper.slides.forEach((slide: HTMLElement) => {
               const fadeElements = slide.querySelectorAll('.fade-in-up-section');
               fadeElements.forEach((el: Element) => el.classList.remove('visible'));
             });
 
-            const activeSlide = swiper.slides[swiper.activeIndex];
+            const activeSlide = swiper.slides[swiper.activeIndex] as HTMLElement;
             if (activeSlide) {
               const fadeElements = activeSlide.querySelectorAll('.fade-in-up-section');
               fadeElements.forEach((el: Element, index: number) => {
@@ -107,6 +163,7 @@ import ScrollIndicator from './ui/ScrollIndicator.astro';
               });
             }
             updateActiveNavLink(swiper.realIndex);
+            updateTabIndex(swiper);
 
             window.dispatchEvent(
               new CustomEvent('swiper-slide-change', {
@@ -136,9 +193,56 @@ import ScrollIndicator from './ui/ScrollIndicator.astro';
     }
   }
 
+  function getFocusableElements(slide: HTMLElement): HTMLElement[] {
+    return Array.from(
+      slide.querySelectorAll<HTMLElement>(
+        'a, button, input, textarea, select, [tabindex]:not([tabindex="-1"])'
+      )
+    ).filter((el) => {
+      const style = window.getComputedStyle(el);
+      return (
+        style.display !== 'none' &&
+        style.visibility !== 'hidden' &&
+        !el.hasAttribute('hidden') &&
+        !el.closest('.hidden') &&
+        el.offsetParent !== null
+      );
+    });
+  }
+
+  function handleKeyDown(e: KeyboardEvent) {
+    if (e.key !== 'Tab' || !swiper || isMobile()) return;
+
+    const activeSlide = swiper.slides[swiper.activeIndex] as HTMLElement;
+    if (!activeSlide) return;
+
+    const currentElement = document.activeElement as HTMLElement;
+    if (!currentElement) return;
+
+    const isInActiveSlide = activeSlide.contains(currentElement);
+    if (isInActiveSlide) return;
+
+    const isInAnySlide = swiper.slides.some((slide: HTMLElement) => slide.contains(currentElement));
+    if (isInAnySlide) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const focusableElements = getFocusableElements(activeSlide);
+
+      if (focusableElements.length > 0) {
+        if (e.shiftKey) {
+          focusableElements[focusableElements.length - 1].focus();
+        } else {
+          focusableElements[0].focus();
+        }
+      }
+    }
+  }
+
   initSwiper();
 
   window.addEventListener('resize', handleResize);
+  window.addEventListener('keydown', handleKeyDown);
   document.querySelectorAll('a[data-slide], .nav-link-to-slide').forEach((link) => {
     link.addEventListener('click', handleNavClick);
   });

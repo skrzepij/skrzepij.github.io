@@ -7,7 +7,12 @@ import prettierPlugin from 'eslint-plugin-prettier';
 
 export default [
   {
-    ...js.configs.recommended,
+    files: ['**/*.{js,jsx}'],
+    rules: {
+      ...js.configs.recommended.rules,
+    },
+  },
+  {
     files: ['**/*.{js,jsx,ts,tsx}'],
     languageOptions: {
       parser: tsParser,
@@ -21,6 +26,7 @@ export default [
       prettier: prettierPlugin,
     },
     rules: {
+      ...js.configs.recommended.rules,
       ...tsPlugin.configs.recommended.rules,
       ...prettierConfig.rules,
       'prettier/prettier': 'error',
