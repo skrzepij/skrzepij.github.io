@@ -18,13 +18,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Astro 5.15.3 as the main framework
+- Astro 5.16.1 as the main framework
 - TailwindCSS 3.4.18 for utility-first styling
 - ESLint 9.39.1 with flat config format for code linting
 - Prettier 3.6.2 for code formatting
 - TypeScript support with strict type checking
 - Component-based architecture with `.astro` components
-- Swiper 12.0.3 for carousel functionality
+- Astro native file-based routing with ClientRouter for smooth page transitions
 - Automated CI/CD workflows with GitHub Actions
 
 ### Removed

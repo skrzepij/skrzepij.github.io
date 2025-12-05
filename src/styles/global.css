@@ -28,6 +28,9 @@
 
   body {
     @apply font-sans font-normal bg-dark-bg text-primary-text;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
   }
 
   h1,
@@ -76,12 +79,22 @@
 
   .fade-in-up-section {
     opacity: 0;
+    transform: translateY(30px);
     transition: opacity 0.8s ease-out, transform 0.8s ease-out;
   }
 
   .fade-in-up-section.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  /* Respect user's motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .fade-in-up-section {
+      opacity: 1;
+      transform: translateY(0);
+      transition: none;
+    }
   }
 
   .delay-1 {
@@ -140,5 +153,36 @@
 
   .btn-outline-light:hover {
     @apply border-accent-yellow text-accent-yellow;
+  }
+
+  .page-section {
+    padding-top: 80px;
+    padding-bottom: 60px;
+    min-height: calc(100vh - 64px - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  .slide-inner-content {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    flex: 0 1 auto;
+  }
+
+  /* Mobile breakpoint: 767px (matches Tailwind md: 768px) */
+  @media (max-width: 767px) {
+    .page-section {
+      padding-top: 70px;
+      padding-bottom: 40px;
+      min-height: auto;
+    }
+
+    .slide-inner-content {
+      padding: 0 1rem;
+    }
   }
 }
