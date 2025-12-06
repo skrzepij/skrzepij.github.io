@@ -110,8 +110,8 @@ const validGaId = sanitizeGoogleAnalyticsId(siteConfig.googleAnalyticsId);
   }
 
   // Re-initialize on navigation (ClientRouter updates DOM)
-  document.addEventListener('astro:after-swap', () => {
-    // DOM is now fully updated after navigation
+  document.addEventListener('astro:page-load', () => {
+    // DOM is fully ready after navigation, including all scripts executed
     initFadeInAnimations();
   });
 </script>
