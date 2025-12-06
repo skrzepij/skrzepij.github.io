@@ -3,7 +3,7 @@ import { NAV_ITEMS } from '@/config/routes';
 
 const navItems = NAV_ITEMS.map((item) => ({
   ...item,
-  href: item.route === 'hero' ? '/' : `/${item.route}`,
+  href: item.route === 'home' ? '/' : `/${item.route}`,
 }));
 ---
 
@@ -57,6 +57,7 @@ const navItems = NAV_ITEMS.map((item) => ({
     id="mobile-menu"
     class="hidden md:hidden bg-dark-card shadow-lg mt-2 rounded-md mx-6"
     role="menu"
+    aria-hidden="true"
   >
     {
       navItems.map((item) => (
@@ -90,9 +91,12 @@ const navItems = NAV_ITEMS.map((item) => ({
     // Add click event listener to button
     mobileMenuButton.addEventListener('click', () => {
       const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      const isHidden = mobileMenu.classList.contains('hidden');
       mobileMenu.classList.toggle('hidden');
+      const willBeHidden = !isHidden;
       mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded));
       mobileMenuButton.setAttribute('aria-label', isExpanded ? 'Otwórz menu' : 'Zamknij menu');
+      mobileMenu.setAttribute('aria-hidden', String(willBeHidden));
     });
 
     // Close menu when clicking on a link
@@ -102,20 +106,29 @@ const navItems = NAV_ITEMS.map((item) => ({
         mobileMenu.classList.add('hidden');
         mobileMenuButton.setAttribute('aria-expanded', 'false');
         mobileMenuButton.setAttribute('aria-label', 'Otwórz menu');
+        mobileMenu.setAttribute('aria-hidden', 'true');
       });
     });
+  }
+
+  // Helper to normalize paths by removing trailing slashes (except for root)
+  function normalizePath(path: string | null) {
+    if (!path) return '/';
+    return path === '/' ? '/' : path.replace(/\/+$/, '');
   }
 
   // Update active nav link based on current URL
   function updateActiveNavLink() {
     const currentPath = window.location.pathname;
     const navLinks = document.querySelectorAll('.nav-link');
+    const normalizedPath = normalizePath(currentPath);
 
     navLinks.forEach((link) => {
       const href = link.getAttribute('href');
+      const normalizedHref = normalizePath(href);
       link.classList.remove('active', 'text-accent-yellow');
 
-      if ((currentPath === '/' && href === '/') || (currentPath !== '/' && href === currentPath)) {
+      if (normalizedPath === normalizedHref) {
         link.classList.add('active', 'text-accent-yellow');
       }
     });

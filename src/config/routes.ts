@@ -1,5 +1,5 @@
 export const ROUTES = {
-  HERO: 'hero',
+  HOME: 'home',
   SERVICES: 'services',
   PORTFOLIO: 'portfolio',
   ABOUT: 'about',
@@ -14,7 +14,7 @@ export interface NavItem {
 }
 
 export const NAV_ITEMS: readonly NavItem[] = [
-  { label: 'START', route: ROUTES.HERO },
+  { label: 'START', route: ROUTES.HOME },
   { label: 'USŁUGI', route: ROUTES.SERVICES },
   { label: 'PROJEKTY', route: ROUTES.PORTFOLIO },
   { label: 'O MNIE', route: ROUTES.ABOUT },

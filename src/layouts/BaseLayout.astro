@@ -63,7 +63,7 @@ const validGaId = sanitizeGoogleAnalyticsId(siteConfig.googleAnalyticsId);
       )
     }
   </head>
-  <body class="flex flex-col min-h-screen">
+  <body>
     <slot />
   </body>
 </html>
@@ -110,8 +110,8 @@ const validGaId = sanitizeGoogleAnalyticsId(siteConfig.googleAnalyticsId);
   }
 
   // Re-initialize on navigation (ClientRouter updates DOM)
-  document.addEventListener('astro:page-load', () => {
-    // Small delay to ensure DOM is fully updated
-    setTimeout(initFadeInAnimations, 50);
+  document.addEventListener('astro:after-swap', () => {
+    // DOM is now fully updated after navigation
+    initFadeInAnimations();
   });
 </script>
