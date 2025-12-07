@@ -8,10 +8,5 @@ export default defineConfig({
   output: 'static',
   site: 'https://skrzepij.github.io',
   base: '/',
-  vite: {
-    optimizeDeps: {
-      include: ['swiper']
-    }
-  }
 });
 

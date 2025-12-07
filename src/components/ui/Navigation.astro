@@ -1,11 +1,10 @@
 ---
-const navItems = [
-  { label: 'START', href: '#hero', slideIndex: 0 },
-  { label: 'USŁUGI', href: '#services', slideIndex: 1 },
-  { label: 'PROJEKTY', href: '#portfolio', slideIndex: 2 },
-  { label: 'O MNIE', href: '#about', slideIndex: 3 },
-  { label: 'KONTAKT', href: '#contact', slideIndex: 4 },
-];
+import { NAV_ITEMS } from '@/config/routes';
+
+const navItems = NAV_ITEMS.map((item) => ({
+  ...item,
+  href: item.route === 'home' ? '/' : `/${item.route}`,
+}));
 ---
 
 <nav
@@ -14,7 +13,7 @@ const navItems = [
   style="height: 64px;"
 >
   <div class="container mx-auto px-6 flex justify-between items-center h-full">
-    <a href="#hero" data-slide="0" class="text-2xl font-bold logo-text">
+    <a href="/" class="text-2xl font-bold logo-text">
       R<span class="text-accent-yellow">S</span>
     </a>
     <div class="hidden md:flex space-x-7 items-center">
@@ -22,7 +21,6 @@ const navItems = [
         navItems.map((item) => (
           <a
             href={item.href}
-            data-slide={item.slideIndex}
             class="nav-link text-primary-text font-medium hover:text-accent-yellow transition-colors"
           >
             {item.label}
@@ -33,7 +31,10 @@ const navItems = [
     <div class="md:hidden">
       <button
         id="mobile-menu-button"
+        type="button"
         aria-label="Otwórz menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
         class="text-gray-300 focus:outline-none"
       >
         <svg
@@ -52,13 +53,18 @@ const navItems = [
       </button>
     </div>
   </div>
-  <div id="mobile-menu" class="hidden md:hidden bg-dark-card shadow-lg mt-2 rounded-md mx-6">
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-dark-card shadow-lg mt-2 rounded-md mx-6"
+    role="menu"
+    aria-hidden="true"
+  >
     {
       navItems.map((item) => (
         <a
           href={item.href}
-          data-slide={item.slideIndex}
           class="block py-3 px-6 nav-link text-primary-text hover:text-accent-yellow hover:bg-dark-lines transition-colors"
+          role="menuitem"
         >
           {item.label}
         </a>
@@ -68,14 +74,81 @@ const navItems = [
 </nav>
 
 <script>
-  const mobileMenuButton = document.getElementById('mobile-menu-button');
-  const mobileMenu = document.getElementById('mobile-menu');
+  // Initialize mobile menu functionality
+  function initMobileMenu() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-  if (mobileMenuButton && mobileMenu) {
+    if (!mobileMenuButton || !mobileMenu) return;
+
+    // Check if already initialized (to avoid duplicate listeners)
+    if (mobileMenuButton.dataset.initialized === 'true') {
+      return;
+    }
+
+    // Mark as initialized
+    mobileMenuButton.dataset.initialized = 'true';
+
+    // Add click event listener to button
     mobileMenuButton.addEventListener('click', () => {
+      const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+      const isHidden = mobileMenu.classList.contains('hidden');
       mobileMenu.classList.toggle('hidden');
+      const willBeHidden = !isHidden;
+      mobileMenuButton.setAttribute('aria-expanded', String(!isExpanded));
+      mobileMenuButton.setAttribute('aria-label', isExpanded ? 'Otwórz menu' : 'Zamknij menu');
+      mobileMenu.setAttribute('aria-hidden', String(willBeHidden));
+    });
+
+    // Close menu when clicking on a link
+    const menuLinks = mobileMenu.querySelectorAll('a');
+    menuLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', 'false');
+        mobileMenuButton.setAttribute('aria-label', 'Otwórz menu');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
     });
   }
+
+  // Helper to normalize paths by removing trailing slashes (except for root)
+  function normalizePath(path: string | null) {
+    if (!path) return '/';
+    return path === '/' ? '/' : path.replace(/\/+$/, '');
+  }
+
+  // Update active nav link based on current URL
+  function updateActiveNavLink() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-link');
+    const normalizedPath = normalizePath(currentPath);
+
+    navLinks.forEach((link) => {
+      const href = link.getAttribute('href');
+      const normalizedHref = normalizePath(href);
+      link.classList.remove('active', 'text-accent-yellow');
+
+      if (normalizedPath === normalizedHref) {
+        link.classList.add('active', 'text-accent-yellow');
+      }
+    });
+  }
+
+  // Initialize on load
+  initMobileMenu();
+  updateActiveNavLink();
+
+  // Re-initialize on navigation (ClientRouter updates DOM)
+  document.addEventListener('astro:page-load', () => {
+    // Reset initialization flag for new DOM elements
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    if (mobileMenuButton) {
+      mobileMenuButton.dataset.initialized = 'false';
+    }
+    initMobileMenu();
+    updateActiveNavLink();
+  });
 </script>
 
 <style>

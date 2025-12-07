@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import imageA from '../../images/image_2d8597-a.jpg';
 import imageB from '../../images/image_2d8597-b.jpg';
 
@@ -27,7 +28,7 @@ const portfolioItems = [
 ];
 ---
 
-<section id="portfolio" class="swiper-slide">
+<section id="portfolio" class="page-section">
   <div class="slide-inner-content">
     <div class="w-full">
       <div class="container mx-auto">
@@ -46,10 +47,13 @@ const portfolioItems = [
               <div
                 class={`bg-dark-card rounded-lg shadow-xl overflow-hidden group fade-in-up-section delay-${index + 1} card-hover-effect border border-dark-lines`}
               >
-                <img
-                  src={typeof item.image === 'string' ? item.image : item.image.src}
+                <Image
+                  src={item.image}
                   alt={item.title}
                   class="w-full h-60 object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                  widths={[400, 800, 1200]}
+                  sizes="(max-width: 767px) 100vw, (max-width: 1023px) 50vw, 33vw"
                 />
                 <div class="p-6">
                   <h3 class="text-xl font-semibold mb-2 text-primary-text">{item.title}</h3>

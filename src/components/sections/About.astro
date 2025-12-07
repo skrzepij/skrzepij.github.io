@@ -1,16 +1,20 @@
 ---
+import { Image } from 'astro:assets';
 import he1Image from '../../images/he1.png';
 ---
 
-<section id="about" class="swiper-slide">
+<section id="about" class="page-section">
   <div class="slide-inner-content">
     <div class="w-full">
       <div class="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
         <div class="fade-in-up-section flex justify-center">
-          <img
-            src={he1Image.src}
+          <Image
+            src={he1Image}
             alt="Ilustracja przedstawiająca Radomira Skrzepij"
             class="rounded-lg shadow-xl mx-auto max-h-[65vh] object-contain"
+            loading="lazy"
+            widths={[320, 480, 640, 800, 1200]}
+            sizes="(max-width: 1024px) 100vw, 50vw"
           />
         </div>
         <div class="fade-in-up-section delay-1">
@@ -32,13 +36,7 @@ import he1Image from '../../images/he1.png';
             Moje doświadczenie pozwala mi na holistyczne podejście do projektów – od strategii i
             doboru technologii, po mentoring i wdrożenie. Jestem otwarty na nowe, ambitne wyzwania.
           </p>
-          <a
-            href="#contact"
-            data-slide="4"
-            class="btn btn-primary-yellow text-base nav-link-to-slide"
-          >
-            Porozmawiajmy
-          </a>
+          <a href="/contact" class="btn btn-primary-yellow text-base"> Porozmawiajmy </a>
         </div>
       </div>
     </div>

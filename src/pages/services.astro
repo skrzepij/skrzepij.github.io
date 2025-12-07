@@ -2,13 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Navigation from '../components/ui/Navigation.astro';
 import Footer from '../components/ui/Footer.astro';
-import Hero from '../components/sections/Hero.astro';
+import ServicesSection from '../components/sections/Services.astro';
 
 const siteConfig = (await import('../config/site')).siteConfig;
 ---
 
-<BaseLayout title="Strona główna" description={siteConfig.description}>
+<BaseLayout title="Usługi" description={siteConfig.description}>
   <Navigation />
-  <Hero />
+  <ServicesSection />
   <Footer />
 </BaseLayout>

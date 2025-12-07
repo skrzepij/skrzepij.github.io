@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import { siteConfig } from '../config/site';
 import { sanitizeGoogleAnalyticsId } from '../utils/analytics';
 import '../styles/global.css';
@@ -20,6 +21,7 @@ const validGaId = sanitizeGoogleAnalyticsId(siteConfig.googleAnalyticsId);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <ClientRouter />
 
     <!-- Primary Meta Tags -->
     <title>{fullTitle}</title>
@@ -33,12 +35,13 @@ const validGaId = sanitizeGoogleAnalyticsId(siteConfig.googleAnalyticsId);
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={siteConfig.url} />
+    <meta property="og:site_name" content={siteConfig.title} />
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary" />
-    <meta property="twitter:creator" content={siteConfig.social.twitter} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:creator" content={siteConfig.social.twitter} />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
 
     <!-- Google Analytics -->
     {
@@ -65,12 +68,50 @@ const validGaId = sanitizeGoogleAnalyticsId(siteConfig.googleAnalyticsId);
   </body>
 </html>
 
-<style is:global>
-  html {
-    scroll-behavior: smooth;
+<script>
+  // Initialize fade-in animations using IntersectionObserver
+  function initFadeInAnimations() {
+    // Respect user's motion preferences
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      // If user prefers reduced motion, make all elements visible immediately
+      document.querySelectorAll('.fade-in-up-section').forEach((el) => {
+        el.classList.add('visible');
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Unobserve after animation to improve performance
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px', // Trigger slightly before element enters viewport
+      }
+    );
+
+    // Observe all fade-in sections
+    document.querySelectorAll('.fade-in-up-section').forEach((section) => {
+      observer.observe(section);
+    });
   }
 
-  body {
-    min-height: 100vh;
+  // Initialize on page load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFadeInAnimations);
+  } else {
+    initFadeInAnimations();
   }
-</style>
+
+  // Re-initialize on navigation (ClientRouter updates DOM)
+  document.addEventListener('astro:page-load', () => {
+    // DOM is fully ready after navigation, including all scripts executed
+    initFadeInAnimations();
+  });
+</script>

@@ -1,3 +1,5 @@
+import type { ImageMetadata } from 'astro';
+
 export interface Service {
   icon: string;
   title: string;
@@ -8,7 +10,7 @@ export interface PortfolioItem {
   id: string;
   title: string;
   description: string;
-  image: string;
+  image: ImageMetadata | string;
   link?: string;
 }
 
@@ -17,10 +19,4 @@ export interface ContactFormData {
   email: string;
   subject: string;
   message: string;
-}
-
-export interface NavigationItem {
-  label: string;
-  href: string;
-  slideIndex: number;
 }

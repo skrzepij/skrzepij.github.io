@@ -12,7 +12,7 @@ Available online:
 
 ## 🚀 Tech Stack
 
-- **Framework:** [Astro](https://astro.build) 5.15.3
+- **Framework:** [Astro](https://astro.build) 5.16.1
 - **Language:** TypeScript 5.7.2
 - **Styling:** TailwindCSS 3.4.18
 - **Package Manager:** pnpm 9.15.0
@@ -60,14 +60,19 @@ pnpm preview
 src/
 ├── components/
 │   ├── sections/     # Page sections (Hero, Services, Portfolio, About, Contact)
-│   ├── ui/           # UI components (Navigation, Footer)
-│   └── SwiperContainer.astro  # Swiper slider component
+│   └── ui/           # UI components (Navigation, Footer)
 ├── layouts/
 │   └── BaseLayout.astro       # Base layout with SEO
 ├── pages/
-│   └── index.astro            # Main page
+│   ├── index.astro            # Home page (Hero)
+│   ├── services.astro         # Services page
+│   ├── portfolio.astro        # Portfolio page
+│   ├── about.astro            # About page
+│   └── contact.astro          # Contact page
 ├── config/
-│   └── site.ts                # Site configuration
+│   ├── site.ts                # Site configuration
+│   ├── routes.ts              # Route definitions and navigation
+│   └── constants.ts           # Global constants (breakpoints, etc.)
 ├── styles/
 │   └── global.css             # Global styles
 └── types/
