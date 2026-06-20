@@ -22,7 +22,7 @@
     "@astrojs/tailwind": "^6.0.2",
     "@fontsource/poppins": "^5.2.7",
     "@fontsource/roboto": "^5.2.9",
-    "astro": "^5.16.1"
+    "astro": "^6.4.6"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.6",
